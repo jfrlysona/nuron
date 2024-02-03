@@ -2,11 +2,80 @@
     background-color: var(--bg-color);
 
     .container {
+        max-width: 1408px;
+        display: flex;
+        margin: 0 auto;
+        padding: 100px 0;
+        align-items: center;
         .text {
             h1 {
                 font-size: 60px;
+                line-height: 80px;
+                color: var(--heading-color);
 
-                span {}
+                span {
+                    color: var(--heading-span-color);
+                    background: #00a3ff;
+                    background-size: 100% 100%;
+                    -webkit-background-clip: text;
+                    -webkit-text-stroke: 3px transparent;
+                }
+            }
+
+            p {
+                color: var(--text-color);
+                font-size: 18px;
+                line-height: 1.6;
+                width: 80%;
+            }
+
+            .btns {
+                button {
+                    min-width: 160px;
+                    min-height: 54px;
+                    border-radius: 10px;
+                    transition: .3s;
+                    font-size: 16px;
+                    letter-spacing: 0.5;
+                    border: none;
+                    color: white;
+                }
+
+                .btn-start {
+                    background-color: #00a3ff;
+                    margin-right: 15px;
+
+                    &:hover {
+                        background-color: #212e48;
+                    }
+                }
+
+                .btn-create {
+                    background-color: #212e48;
+
+                    &:hover {
+                        background-color: #00a3ff;
+                    }
+                }
+            }
+        }
+
+        .content {
+            padding-right: 20px;
+            .images {
+                position: relative;
+                perspective: 1000px;
+
+                img {
+                    width: 100%;
+                    display: block;
+                    transition: transform 0.5s ease;
+
+                    .images img:hover {
+                        transform: scale(1.1);
+                    }
+
+                }
             }
         }
     }

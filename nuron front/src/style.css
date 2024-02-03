@@ -1,8 +1,14 @@
 :root {
   --bg-color: #13131d;
+  --heading-color:white;
+  --heading-span-color: #14141f;
+  --text-color:#acacac;
 }
 .light {
   --bg-color: #f5f8fa;
+  --heading-color:#181c32;
+  --heading-span-color: #fff;
+  --text-color: #65676b;
 }
 body {
   background-color: var(--bg-color);
