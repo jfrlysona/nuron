@@ -1,14 +1,22 @@
 :root {
   --bg-color: #13131d;
-  --heading-color:white;
+  --heading-color: white;
   --heading-span-color: #14141f;
-  --text-color:#acacac;
+  --text-color: #acacac;
+  --text-heading:#fff;
+  --border-color: #ffffff14;
+  --bg-color-element: #24243557;
+  --blured-bg:#ffffff0d ;
 }
 .light {
   --bg-color: #f5f8fa;
-  --heading-color:#181c32;
+  --heading-color: #181c32;
   --heading-span-color: #fff;
   --text-color: #65676b;
+  --text-heading:#65676b;
+  --border-color: #00000024;
+  --blured-bg: #fff;
+  --bg-color-element: #fff;
 }
 body {
   background-color: var(--bg-color);

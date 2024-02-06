@@ -7,6 +7,8 @@
         margin: 0 auto;
         padding: 100px 0;
         align-items: center;
+        gap: 50px;
+
         .text {
             h1 {
                 font-size: 60px;
@@ -62,6 +64,8 @@
 
         .content {
             padding-right: 20px;
+            position: relative;
+
             .images {
                 position: relative;
                 perspective: 1000px;
@@ -77,6 +81,80 @@
 
                 }
             }
+
+            .jumping-text {
+                position: absolute;
+                bottom: -50px;
+                left: 70px;
+                padding: 20px;
+                border-radius: 10px;
+                max-width: 300px;
+                height: max-content;
+                background: 0 0;
+                border: 1px solid var(--border-color);
+                backdrop-filter: blur(12px);
+                --webkit-backdrop-filter: blur(12px);
+                background-color: var(--blured-bg);
+                animation: jump 5s infinite;
+
+                .users {
+                    display: flex;
+                    align-items: center;
+
+                    .users-photo {
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            border: 2px solid var(--border-color);
+                            transition: all 300ms;
+                        }
+                    }
+
+                    span {
+                        color: var(--text-heading);
+                        font-size: 14px;
+                        line-height: 1.5;
+                        font-weight: 500;
+                    }
+
+                }
+
+                p {
+                    line-height: 1.6;
+                    font-size: 16px;
+                    color: var(--text-color);
+                }
+            }
         }
     }
 }
+
+@keyframes jump {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        -webkit-transform: translate3d(0, 30px, 0);
+        transform: translate3d(0, 30px, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+// @media screen and (min-width:320px) and (max-width:990px) {
+//     #homeHeader {
+//         .container {
+//             justify-content: center;
+            
+            
+//             flex-wrap: wrap-reverse;
+//             gap: 100px;
+//         }
+//     }
+// }

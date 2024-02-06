@@ -1,0 +1,39 @@
+.videoModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 70px 0;
+    background-color: rgba(0, 0, 0, 0.759);
+    z-index: 3;
+    .container {
+        position: relative;
+
+        i {
+            position: absolute;
+            right: -20px;
+            top: -30px;
+            font-size: 28px;
+            color: var(--text-heading);
+            transition: all 300ms;
+            cursor: pointer;
+            user-select: none;
+            &:hover {
+                color: #00a3ff;
+            }
+        }
+
+        iframe {
+            margin: 0 auto;
+            display: block;
+            max-width: 1220px;
+            height: 590px;
+            width: 100%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+    }
+}
+// @media screen and (min-width:320px) {
+    
+// }

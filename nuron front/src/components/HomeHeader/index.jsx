@@ -89,11 +89,16 @@ function HomeHeader() {
           </div>
           <div className="jumping-text">
             <div className="users">
-              <div className="users-photo"></div>
+              <div className="users-photo">
+                <img src="https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-3.png" alt="" />
+                <img src="https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-3.png" alt="" />
+                <img src="https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-3.png" alt="" />
+                <img src="https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-3.png" alt="" />
+              </div>
               <span>More Then 25K</span>
             </div>
             <p>
-              Million of people are selling there NFTs in Nuron marketplaces.
+              Million of people are selling there NFTs in Nuron marketplaces. <br />
               Create & Sell Your NFT.
             </p>
           </div>
