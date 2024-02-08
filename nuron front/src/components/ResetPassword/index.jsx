@@ -1,28 +1,25 @@
-import React from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { ThemeContext } from "../../context/ThemeProvider";
 import "./index.scss";
-import useDarkMode from "../../hooks/useDarkMode";
 
 function ResetPassword() {
-  const { theme } = useDarkMode();
+  const { theme } = useContext(ThemeContext);
+
   return (
     <section id="reset">
       <div className="reset-container">
         <div className="reset-content">
-          {theme === "dark" ? (
-            <img
-              src="https://nuron-nextjs.vercel.app/_next/image?url=%2Fimages%2Flogo%2Flogo-white.png&w=128&q=75"
-              alt="Dark Logo"
-            />
-          ) : (
-            <img
-              src="https://nuron-nextjs.vercel.app/_next/image?url=%2Fimages%2Flogo%2Flogo-dark.png&w=128&q=75"
-              alt="Light Logo"
-            />
-          )}
-
+          <img
+            src={
+              theme === "dark"
+                ? "https://nuron-nextjs.vercel.app/_next/image?url=%2Fimages%2Flogo%2Flogo-white.png&w=128&q=75"
+                : "https://nuron-nextjs.vercel.app/_next/image?url=%2Fimages%2Flogo%2Flogo-dark.png&w=128&q=75"
+            }
+            alt="Logo"
+          />
           <Formik
             initialValues={{ email: "", toggle: false }}
             validationSchema={Yup.object({

@@ -1,8 +1,8 @@
-import React from "react";
-import useDarkMode from "../../hooks/useDarkMode";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeProvider";
 
 function Navbar() {
-  const { handleTheme } = useDarkMode();
+  const { handleTheme } = useContext(ThemeContext);
   return (
     <div>
       Navbar

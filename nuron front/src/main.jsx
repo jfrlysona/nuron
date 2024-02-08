@@ -4,11 +4,17 @@ import App from "./App.jsx";
 import "./index.scss";
 import "./style.css";
 import { HelmetProvider } from "react-helmet-async";
+import WishlistProvider from "./context/WIshlistProvider/index.jsx";
+import ThemeProvider from "./context/ThemeProvider/index.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
-      <App />
+      <WishlistProvider>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </WishlistProvider>
     </HelmetProvider>
   </React.StrictMode>
 );
