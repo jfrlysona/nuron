@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import "./index.scss";
 
 function SignUp() {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <section id="signUp">
       <div className="signUp-container">
@@ -16,6 +18,7 @@ function SignUp() {
               email: "",
               password: "",
               repassword: "",
+              toggle: false,
             }}
             validationSchema={Yup.object({
               firstName: Yup.string()
@@ -33,6 +36,7 @@ function SignUp() {
               repassword: Yup.string()
                 .oneOf([Yup.ref("password"), null], "Passwords must match")
                 .required("Required"),
+              toggle: Yup.boolean().oneOf([true], "You must allow all terms"),
             })}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
@@ -44,44 +48,63 @@ function SignUp() {
             <Form>
               <div className="form">
                 <label htmlFor="firstName">First Name</label>
-                <Field name="firstName" type="text" />
+                <Field name="firstName" id="firstName" type="text" />
                 <ErrorMessage name="firstName" component="span" />
               </div>
 
               <div className="form">
                 <label htmlFor="lastName">Last Name</label>
-                <Field name="lastName" type="text" />
+                <Field name="lastName" id="lastName" type="text" />
                 <ErrorMessage name="lastName" component="span" />
               </div>
 
               <div className="form">
                 <label htmlFor="email">Email Address</label>
-                <Field name="email" type="email" />
+                <Field name="email" id="email" type="email" />
                 <ErrorMessage name="email" component="span" />
               </div>
 
               <div className="form">
                 <label htmlFor="password">Create Password</label>
                 <div className="password-input">
-                  <Field name="password" type="password" />
-                  {/* <i className="fa-sharp fa-light fa-eye-slash"></i> */}
-                  <i className="fa-sharp fa-light fa-eye"></i>
+                  <Field
+                    name="password"
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                  />
+                  {showPassword ? (
+                    <i
+                      className="fa-sharp fa-light fa-eye-slash"
+                      onClick={() => setShowPassword(false)}
+                    ></i>
+                  ) : (
+                    <i
+                      className="fa-sharp fa-light fa-eye"
+                      onClick={() => setShowPassword(true)}
+                    ></i>
+                  )}
                 </div>
                 <ErrorMessage name="password" component="span" />
               </div>
 
               <div className="form">
                 <label htmlFor="repassword">Repeat Password</label>
-                <div className="password-input">
-                  <Field name="repassword" type="password" />
-                  {/* <i className="fa-sharp fa-light fa-eye-slash"></i> */}
-                  <i className="fa-sharp fa-light fa-eye"></i>
-                </div>
+                <Field
+                  name="repassword"
+                  id="repassword"
+                  type={showPassword ? "text" : "password"}
+                />
                 <ErrorMessage name="repassword" component="span" />
               </div>
+
               <div className="checkbox">
-                <Field type="checkbox" name="toggle" />
-                Allow to all <Link to={"/terms"}>terms</Link> 
+                <div className="checkbox-input">
+                  <Field type="checkbox" name="toggle" id="toggle" />
+                  <label htmlFor="toggle">
+                    Allow to all <Link to={"/terms"}>Terms</Link>
+                  </label>
+                </div>
+                <ErrorMessage name="toggle" component={"span"} />
               </div>
               <button type="submit">Sign Up</button>
             </Form>

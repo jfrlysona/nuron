@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "./index.scss"
 function Header({ title, prevLink, currentLink, prevPage, currentPage }) {
   return (
     <div className="header">

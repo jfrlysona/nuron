@@ -1,0 +1,45 @@
+#terms {
+    padding: 70px 0 100px;
+
+    ul {
+        margin: 0 auto;
+        max-width: 1408px;
+        padding: 0 110px;
+
+        li {
+            list-style: decimal;
+            font-size: 16px;
+            line-height: 26px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0 10px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 30px 0;
+
+            a {
+                text-decoration: underline;
+                margin: 0 5px;
+                font-size: 18px;
+                line-height: 1.6;
+                transition: all 400ms;
+                color: var(--link-color);
+
+                &:hover {
+                    color: #00a3ff;
+                }
+            }
+        }
+
+        span {
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+    }
+}

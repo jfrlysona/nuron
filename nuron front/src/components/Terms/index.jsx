@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "./index.scss";
 function Terms() {
   return (
     <section id="terms">
       <ul>
         <p>Welcome to Nuron’s Terms of Service page.</p>
         <p>
-          {" "}
           By accessing or using the Nuron website and services, you agree to be
           bound by the following terms and conditions (the “Terms”). If you do
           not agree to these Terms, you may not access or use the Nuron website
@@ -91,7 +90,7 @@ function Terms() {
         <li>Contact us</li>
         <p>
           If you have any questions or concerns about these Terms, please
-          contact us at{" "}
+          contact us at
           <Link to="mailto:nuron.nft@inbox.ru">nuron.nft@inbox.ru</Link>
         </p>
         <span>Thank you for using Nuron.</span>

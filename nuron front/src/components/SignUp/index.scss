@@ -1,0 +1,146 @@
+#signUp {
+    padding: 100px 0;
+
+    .signUp-container {
+        .signUp-content {
+            padding: 35px 40px;
+            max-width: 1408px;
+            margin: 0 auto;
+            border-radius: 6px;
+            background-color: var(--bg-color-element);
+            border: 1px solid #ffffff14;
+
+            h2 {
+                line-height: 1.25;
+                font-size: 26px;
+                color: var(--heading-color);
+                margin-bottom: 20px;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .form {
+                    label {
+                        font-size: 16px;
+                        color: var(--text-color);
+                        line-height: 2;
+                    }
+
+                    input {
+                        height: 50px;
+                        width: 100%;
+                        padding: 4px 10px;
+                        border-radius: 5px;
+                        font-size: 18px;
+                        background: var(--bg-color-element2);
+                        color: var(--text-heading);
+                        border: 2px solid var(--border-color);
+                        -webkit-transition: 0.3s;
+                        transition: 0.3s;
+                        outline: 0;
+
+                        &:focus {
+                            border: 2px solid #00a3ff;
+                        }
+                    }
+
+                    .password-input {
+                        position: relative;
+
+                        i {
+                            position: absolute;
+                            font-size: 14px;
+                            top: 38%;
+                            right: 20px;
+                            cursor: pointer;
+                            user-select: none;
+                        }
+
+                        .fa-eye {
+                            color: #585858;
+                        }
+
+                        .fa-eye-slash {
+                            color: var(--text-color);
+                        }
+                    }
+                }
+
+                span {
+                    color: var(--red-text);
+                    font-size: 14px;
+                    line-height: 2;
+                    margin-left: 2px;
+                }
+
+                .checkbox {
+                    display: flex;
+                    flex-direction: column;
+                    .checkbox-input {
+                        label {
+                            color: #acacac;
+                            font-size: 14px;
+                            line-height: 2;
+                            margin: 0 10px;
+
+                            a {
+                                color: #acacac;
+                                font-size: 14px;
+                                line-height: 2;
+                                transition: all 400ms;
+
+                                &:hover {
+                                    color: #00a3ff;
+                                }
+                            }
+                        }
+                    }
+
+                    span {
+                        color: var(--red-text);
+                        font-size: 14px;
+                        line-height: 2;
+                        margin-left: 2px;
+                    }
+                }
+
+
+
+                button {
+                    padding: 10px 16px;
+                    border-radius: 10px;
+                    transition: .3s;
+                    font-size: 16px;
+                    letter-spacing: 0.5px;
+                    border: none;
+                    color: white;
+                    background-color: #00a3ff;
+                    width: max-content;
+
+                    &:hover {
+                        background-color: #212e48;
+                    }
+                }
+            }
+
+            .haveAcc {
+                color: var(--text-color);
+                font-size: 14px;
+                line-height: 28px;
+                text-align: right;
+
+                a {
+                    transition: all 400ms;
+                    color: var(--text-color);
+
+                    &:hover {
+                        color: #00a3ff;
+                    }
+                }
+            }
+        }
+    }
+}

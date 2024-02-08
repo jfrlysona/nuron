@@ -1,5 +1,5 @@
 import React from "react";
-import PrivacyPolicy from "../../components/PrivacyPolicy/inde";
+import PrivacyPolicy from "../../components/PrivacyPolicy/index";
 import { Helmet } from "react-helmet-async";
 import Header from "../../components/Header";
 
