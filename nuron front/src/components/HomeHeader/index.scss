@@ -10,6 +10,9 @@
         gap: 50px;
 
         .text {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             h1 {
                 font-size: 60px;
                 line-height: 80px;
