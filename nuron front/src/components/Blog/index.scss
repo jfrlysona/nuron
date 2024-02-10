@@ -1,0 +1,15 @@
+#blog {
+    padding: 100px 0;
+
+    .container {
+        max-width: 1408px;
+        margin: 0 auto;
+
+        .blogs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 30px;
+            row-gap: 30px;
+        }
+    }
+}

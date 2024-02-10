@@ -1,0 +1,68 @@
+#callToAction {
+    text-align: center;
+    padding: 80px 0;
+    background-image: url("https://rainbowthemes.net/themes/nuron/wp-content/themes/nuron/assets/images/bg/bg-image-6.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+
+    &::before {
+        background-color: #000;
+        opacity: .7;
+        position: absolute;
+        content: "";
+        top: 0;
+        box-sizing: border-box;
+        left: 0;
+        z-index: -2;
+        height: 100%;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 45px;
+        line-height: 60px;
+        font-weight: 400;
+        margin-bottom: 15px;
+        color: white;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 32px;
+        color: var(--text-color);
+        margin-bottom: 30px;
+    }
+
+    .btns {
+        button {
+            min-width: 160px;
+            min-height: 54px;
+            border-radius: 10px;
+            transition: .3s;
+            font-size: 16px;
+            letter-spacing: 0.5;
+            border: none;
+            color: white;
+        }
+
+        .btn-create {
+            background-color: #00a3ff;
+            margin-right: 15px;
+
+            &:hover {
+                background-color: #212e48;
+            }
+        }
+
+        .btn-contact {
+            background-color: #212e48;
+
+            &:hover {
+                background-color: #00a3ff;
+            }
+        }
+    }
+}

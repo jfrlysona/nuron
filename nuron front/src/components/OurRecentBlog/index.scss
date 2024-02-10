@@ -1,0 +1,38 @@
+#ourRecentBlog {
+    padding: 100px 0;
+
+    .container {
+        max-width: 1408px;
+        margin: 0 auto;
+
+        .title {
+            display: flex;
+            justify-content: space-between;
+
+            h1 {
+                font-size: 32px;
+                line-height: 37px;
+                color: var(--heading-color);
+            }
+
+            a {
+                text-transform: uppercase;
+                font-size: 14px;
+                line-height: 21px;
+                color: var(--text-color3);
+                transition: all 400ms;
+
+                &:hover {
+                    color: #00a3ff;
+                }
+            }
+        }
+
+        .blog-cards {
+            padding-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 30px;
+        }
+    }
+}

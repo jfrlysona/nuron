@@ -1,0 +1,39 @@
+#statistics {
+    padding: 40px 0 100px;
+
+    .container {
+        max-width: 925px;
+        margin: 0 auto;
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            line-height: 35px;
+            margin-bottom: 50px;
+            color: var(--heading-color);
+        }
+
+        .cards-statistics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 30px;
+            row-gap: 30px;
+
+            .card {
+                padding: 50px 40px;
+                border-radius: 5px;
+                background-color: var(--bg-color-element);
+                border: 1px solid #ffffff14;
+                display: grid;
+                place-items: center;
+
+                p {
+                    font-size: 18px;
+                    text-align: center;
+                    line-height: 29px;
+                    color: var(--text-color2);
+                }
+            }
+        }
+    }
+}

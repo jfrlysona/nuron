@@ -16,7 +16,7 @@ function Navbar() {
   const stickNavbar = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 480 ? setStickyNav(true) : setStickyNav(false);
+      windowHeight > 200 ? setStickyNav(true) : setStickyNav(false);
     }
   };
 
@@ -39,7 +39,7 @@ function Navbar() {
             <NavLink to={"/about"}>About</NavLink>
             <NavLink to={"/*"}>Explore</NavLink>
             <NavLink to={"/*"}>Pages</NavLink>
-            <NavLink to={"/*"}>Blog</NavLink>
+            <NavLink to={"/blog"}>Blog</NavLink>
             <NavLink to={"/contact"}>Contact</NavLink>
           </div>
         </div>

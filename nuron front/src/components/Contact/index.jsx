@@ -1,8 +1,32 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import * as Yup from "yup";
 import "./index.scss";
 function Contact() {
+  const form = useRef();
+  const sendEmail = (values) => {
+    const templateParams = {
+      from_name: values.name,
+      from_email: values.email,
+      to_name: "Nuron team",
+      message: values.message,
+      subject: values.subject,
+    };
+
+    emailjs
+      .send("service_k1d1vbj", "template_r8ulnco", templateParams, {
+        publicKey: "pWNZ_zemwjWdjhKrB",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  };
   return (
     <section id="contact">
       <div className="container">
@@ -54,23 +78,25 @@ function Contact() {
             initialValues={{ name: "", email: "", subject: "", message: "" }}
             validationSchema={Yup.object({
               name: Yup.string()
-                .min(5, "Must be 5 characters at least")
+                .min(2, "Must be 2 characters at least")
                 .required("Required"),
               email: Yup.string()
                 .email("Invalid email address")
                 .required("Required"),
               subject: Yup.string()
-                .min(5, "Must be 5 characters at least")
+                .min(2, "Must be 2 characters at least")
                 .required("Required"),
               message: Yup.string()
                 .min(20, "Must be 20 characters at least")
                 .required("Required"),
             })}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(false);
+              sendEmail(values);
+              resetForm(values);
             }}
           >
-            <Form>
+            <Form ref={form}>
               <h2>Contact Us</h2>
               <div className="form">
                 <label htmlFor="name">Your name</label>
