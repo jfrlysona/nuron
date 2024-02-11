@@ -6,6 +6,33 @@ import "./index.scss";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      const response = await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+          firstName: values.firstName,
+          lastName: values.lastName,
+        }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+      // If login successful, you can redirect the user or perform any other actions
+      resetForm();
+      setError(null);
+      console.log("Sign up successful");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
   return (
     <section id="signUp">
       <div className="signUp-container">
@@ -38,11 +65,9 @@ function SignUp() {
                 .required("Required"),
               toggle: Yup.boolean().oneOf([true], "You must allow all terms"),
             })}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setSubmitting(false);
+              handleSubmit(values, { resetForm });
             }}
           >
             <Form>
@@ -107,6 +132,7 @@ function SignUp() {
                 <ErrorMessage name="toggle" component={"span"} />
               </div>
               <button type="submit">Sign Up</button>
+              {error && <div className="error">{error}</div>}
             </Form>
           </Formik>
           <p className="haveAcc">

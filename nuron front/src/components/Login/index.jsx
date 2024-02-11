@@ -1,10 +1,35 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./index.scss";
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+      // If login successful, you can redirect the user or perform any other actions
+      resetForm();
+      setError(null);
+      console.log("Login successful");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
   return (
     <section id="login">
       <div className="login-container">
@@ -21,8 +46,9 @@ function Login() {
                 .required("Required"),
               toggle: Yup.boolean().oneOf([true], "Required"),
             })}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(false);
+              handleSubmit(values, { resetForm });
             }}
           >
             <Form>
@@ -66,6 +92,7 @@ function Login() {
                 <Link to="/reset-password">Lost your password?</Link>
               </div>
               <button type="submit">Log In</button>
+              {error && <div className="error">{error}</div>}
             </Form>
           </Formik>
           <p className="haveAcc">
