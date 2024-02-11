@@ -44,15 +44,17 @@ app.post("/login", async (req, res) => {
     const user = await UserModel.findOne({ email: email });
     if (!user) {
       res.status(404).json({ message: "User is not Found!" });
+      return;
     }
     const checkPassword = await bcrypt.compare(password, user.password);
     if (!checkPassword) {
       res.status(403).json({ message: "Password is not correct!" });
+      return;
     }
     const token = jwt.sign({ email: user.email }, "ldldfk/@%$oos", {
       expiresIn: "1h",
     });
-    res.status(200).json({ token: token });
+    res.status(200).json(token);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -61,6 +63,11 @@ app.post("/login", async (req, res) => {
 app.post("/register", async (req, res) => {
   try {
     const { email, password, firstName, lastName } = req.body;
+    const existingUser = await UserModel.findOne({ email: email });
+    if (existingUser) {
+      res.status(409).json({ error: "User Already Exists" });
+      return;
+    }
     const hash = await bcrypt.hash(password, 12);
     const newUser = new UserModel({
       email,
@@ -72,7 +79,7 @@ app.post("/register", async (req, res) => {
     const token = jwt.sign({ email: newUser.email }, "ldldfk/@%$oos", {
       expiresIn: "1h",
     });
-    res.status(200).json({ token: token });
+    res.status(200).json(token);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -91,11 +98,11 @@ app.post("/register", async (req, res) => {
 //   res.send(user);
 // });
 
-// app.delete("/user/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const user = await UserModel.findByIdAndDelete(id);
-//   res.send(user);
-// });
+app.delete("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const user = await UserModel.findByIdAndDelete(id);
+  res.send(user);
+});
 
 mongoose
   .connect(key)
