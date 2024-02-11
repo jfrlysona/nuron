@@ -1,5 +1,6 @@
 #about {
     padding-top: 100px;
+
     .main {
         h1 {
             max-width: 1408px;
@@ -31,10 +32,6 @@
                         background-color: var(--bg-color-element4);
                         padding: 50px 40px;
                         border-radius: 5px;
-                        position: absolute;
-                        position: -webkit-sticky;
-                        bottom: -250px;
-                        left: 0;
 
                         h2 {
                             font-size: 36px;

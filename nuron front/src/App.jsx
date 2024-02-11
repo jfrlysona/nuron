@@ -12,6 +12,7 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import RegisterPage from "./pages/RegisterPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import TermsPage from "./pages/TermsPage";
+import PrivateRouter from "./routes/PrivateRouter";
 
 function App() {
   return (
@@ -28,8 +29,10 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/sign-up" element={<RegisterPage />} />
               <Route path="/reset-password" element={<ResetPasswordPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-              <Route path="/terms" element={<TermsPage />} />
+              <Route element={<PrivateRouter />}>
+                <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                <Route path="/terms" element={<TermsPage />} />
+              </Route>
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>

@@ -17,7 +17,7 @@ function About() {
   const stickDiv = () => {
     if (window !== undefined) {
       let windowHeight = window.scrollY;
-      windowHeight > 700 && windowHeight < 900
+      windowHeight > 350 && windowHeight < 920
         ? setStickyDiv(true)
         : setStickyDiv(false);
     }
@@ -34,16 +34,13 @@ function About() {
             <div className="container">
               <div
                 className="text"
-                style={
-                  stickyDiv
-                    ? {
-                        position: "fixed",
-                        top: "100px",
-                        left: "60px",
-                        height: "min-content",
-                      }
-                    : null
-                }
+                style={{
+                  position: stickyDiv ? "fixed" : "absolute",
+                  bottom: stickyDiv ? "-250px" : "-460px",
+                  left: stickyDiv ? "60px" : null,
+                  top: stickyDiv ? "100px" : null,
+                  height: stickyDiv ? "min-content" : null,
+                }}
               >
                 <h2>Why We Do This</h2>
                 <p>
