@@ -1,11 +1,14 @@
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import React, { useEffect, useState } from "react";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import * as Yup from "yup";
 import "./index.scss";
+import { AuthContext } from "../../context/AuthProvider";
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
+  const { login } = useContext(AuthContext);
+
   const handleSubmit = async (values, { resetForm }) => {
     try {
       const response = await fetch("http://localhost:3000/login", {
@@ -22,10 +25,10 @@ function Login() {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
-      // If login successful, you can redirect the user or perform any other actions
       resetForm();
       setError(null);
       console.log("Login successful");
+      login();
     } catch (error) {
       setError(error.message);
     }
@@ -91,13 +94,16 @@ function Login() {
                 </div>
                 <Link to="/reset-password">Lost your password?</Link>
               </div>
+
               <button type="submit">Log In</button>
-              {error && <div className="error">{error}</div>}
             </Form>
           </Formik>
-          <p className="haveAcc">
-            Don't have account? <Link to={"/sign-up"}>Sign Up</Link>
-          </p>
+          <div className="haveAcc">
+            {error && <span>{error}</span>}
+            <p>
+              Don't have account? <Link to={"/sign-up"}>Sign Up</Link>
+            </p>
+          </div>
         </div>
       </div>
     </section>

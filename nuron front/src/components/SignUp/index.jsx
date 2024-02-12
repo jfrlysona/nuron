@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./index.scss";
@@ -7,6 +7,7 @@ import "./index.scss";
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const handleSubmit = async (values, { resetForm }) => {
     try {
       const response = await fetch("http://localhost:3000/register", {
@@ -29,6 +30,7 @@ function SignUp() {
       resetForm();
       setError(null);
       console.log("Sign up successful");
+      navigate("/login");
     } catch (error) {
       setError(error.message);
     }
@@ -132,12 +134,14 @@ function SignUp() {
                 <ErrorMessage name="toggle" component={"span"} />
               </div>
               <button type="submit">Sign Up</button>
-              {error && <div className="error">{error}</div>}
             </Form>
           </Formik>
-          <p className="haveAcc">
-            Already have an account? <Link to={"/login"}>Login</Link>
-          </p>
+          <div className="haveAcc">
+            {error && <span>{error}</span>}
+            <p>
+              Already have an account? <Link to={"/login"}>Login</Link>
+            </p>
+          </div>
         </div>
       </div>
     </section>

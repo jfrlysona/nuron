@@ -7,6 +7,7 @@ import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
+import NewPasswordPage from "./pages/NewPasswordPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -29,11 +30,12 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/sign-up" element={<RegisterPage />} />
               <Route path="/reset-password" element={<ResetPasswordPage />} />
+              <Route path="/new-password" element={<NewPasswordPage />} />
+              <Route path="*" element={<NotFoundPage />} />
               <Route element={<PrivateRouter />}>
                 <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                 <Route path="/terms" element={<TermsPage />} />
               </Route>
-              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </ScrollToTop>

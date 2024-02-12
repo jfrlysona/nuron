@@ -7,13 +7,16 @@ import "./odemeter.css";
 import { HelmetProvider } from "react-helmet-async";
 import WishlistProvider from "./context/WIshlistProvider/index.jsx";
 import ThemeProvider from "./context/ThemeProvider/index.jsx";
+import AuthProvider from "./context/AuthProvider/index.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
       <WishlistProvider>
         <ThemeProvider>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </ThemeProvider>
       </WishlistProvider>
     </HelmetProvider>

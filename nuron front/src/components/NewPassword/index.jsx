@@ -1,36 +1,39 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useContext, useRef } from "react";
-import emailjs from "@emailjs/browser";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { ThemeContext } from "../../context/ThemeProvider";
 import "./index.scss";
 
-function ResetPassword() {
+function NewPassword() {
+  const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const { theme } = useContext(ThemeContext);
-  const form = useRef();
-  const sendEmail = (values) => {
-    const templateParams = {
-      from_email: values.email,
-      to_name: "Nuron team",
-    };
+  const navigate = useNavigate();
 
-    emailjs
-      .send("service_k1d1vbj", "template_7pnqn8c", templateParams, {
-        publicKey: "pWNZ_zemwjWdjhKrB",
-      })
-      .then(
-        () => {
-          console.log("SUCCESS!");
+  const handleResetPassword = async (values, { resetForm }) => {
+    try {
+      const response = await fetch("http://localhost:3000/reset-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        (error) => {
-          console.log("FAILED...", error.text);
-        }
-      );
+        body: JSON.stringify(values),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+      resetForm();
+      setError(null);
+      navigate("/login");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
-    <section id="reset">
+    <section id="newpassword">
       <div className="reset-container">
         <div className="reset-content">
           <img
@@ -42,10 +45,13 @@ function ResetPassword() {
             alt="Logo"
           />
           <Formik
-            initialValues={{ email: "", toggle: false }}
+            initialValues={{ email: "", password: "", toggle: false }}
             validationSchema={Yup.object({
               email: Yup.string()
                 .email("Invalid email address")
+                .required("Required"),
+              password: Yup.string()
+                .min(8, "Must be 8 characters at least")
                 .required("Required"),
               toggle: Yup.boolean().oneOf(
                 [true],
@@ -54,11 +60,10 @@ function ResetPassword() {
             })}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setSubmitting(false);
-              sendEmail(values);
-              resetForm(values);
+              handleResetPassword(values, { resetForm });
             }}
           >
-            <Form ref={form}>
+            <Form>
               <div className="form">
                 <label htmlFor="email">Email Address</label>
                 <Field
@@ -68,6 +73,29 @@ function ResetPassword() {
                   placeholder="Enter Your Email"
                 />
                 <ErrorMessage name="email" component={"span"} />
+              </div>
+              <div className="form">
+                <label htmlFor="password">New Password</label>
+                <div className="password-input">
+                  <Field
+                    placeholder="Enter New Password"
+                    name="password"
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                  />
+                  {showPassword ? (
+                    <i
+                      className="fa-sharp fa-light fa-eye-slash"
+                      onClick={() => setShowPassword(false)}
+                    ></i>
+                  ) : (
+                    <i
+                      className="fa-sharp fa-light fa-eye"
+                      onClick={() => setShowPassword(true)}
+                    ></i>
+                  )}
+                </div>
+                <ErrorMessage name="password" component={"span"} />
               </div>
 
               <div className="text-login">
@@ -85,11 +113,11 @@ function ResetPassword() {
               <button type="submit">Reset Password</button>
             </Form>
           </Formik>
-          <p>Note: We will send a password link to your email</p>
+          {error && <p>{error}</p>}
         </div>
       </div>
     </section>
   );
 }
 
-export default ResetPassword;
+export default NewPassword;
