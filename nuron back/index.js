@@ -43,7 +43,7 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email: email });
     if (!user) {
-      res.status(404).json({ message: "User is not Found!" });
+      res.status(404).json({ message: "User is not found!" });
       return;
     }
     const checkPassword = await bcrypt.compare(password, user.password);
@@ -65,7 +65,7 @@ app.post("/register", async (req, res) => {
     const { email, password, firstName, lastName } = req.body;
     const existingUser = await UserModel.findOne({ email: email });
     if (existingUser) {
-      res.status(409).json({ error: "User Already Exists" });
+      res.status(409).json({ message: "User Already Exists" });
       return;
     }
     const hash = await bcrypt.hash(password, 12);
@@ -82,6 +82,27 @@ app.post("/register", async (req, res) => {
     res.status(200).json(token);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+});
+
+app.post("/reset-password", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User is not found" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({ message: "Password reset successfully" });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res.status(500).json({ message: "Failed to reset password" });
   }
 });
 
