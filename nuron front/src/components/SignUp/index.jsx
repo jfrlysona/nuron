@@ -26,10 +26,8 @@ function SignUp() {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
-      // If login successful, you can redirect the user or perform any other actions
       resetForm();
       setError(null);
-      console.log("Sign up successful");
       navigate("/login");
     } catch (error) {
       setError(error.message);

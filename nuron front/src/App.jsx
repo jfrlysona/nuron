@@ -32,7 +32,7 @@ function App() {
               <Route path="/reset-password" element={<ResetPasswordPage />} />
               <Route path="/new-password" element={<NewPasswordPage />} />
               <Route path="*" element={<NotFoundPage />} />
-              <Route element={<PrivateRouter />}>
+              <Route element={<PrivateRouter roles={["User", "Admin"]} />}>
                 <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                 <Route path="/terms" element={<TermsPage />} />
               </Route>

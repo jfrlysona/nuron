@@ -1,14 +1,14 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { UserContext } from "../../context/UserProvider";
 import "./index.scss";
-import { AuthContext } from "../../context/AuthProvider";
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
-  const { login } = useContext(AuthContext);
-
+  const { addToken } = useContext(UserContext);
+  const navigate = useNavigate();
   const handleSubmit = async (values, { resetForm }) => {
     try {
       const response = await fetch("http://localhost:3000/login", {
@@ -25,12 +25,15 @@ function Login() {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
+
+      const data = await response.json();
+      addToken(data);
       resetForm();
       setError(null);
-      console.log("Login successful");
-      login();
+      navigate("/");
     } catch (error) {
       setError(error.message);
+      console.log(error.message);
     }
   };
   return (

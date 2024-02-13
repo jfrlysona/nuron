@@ -20,7 +20,7 @@ function BlogCard() {
         </div>
         <h4>
           Rare art from the best artists
-          <i class="fa-light fa-arrow-up-right"></i>
+          <i className="fa-light fa-arrow-up-right"></i>
         </h4>
       </div>
     </div>

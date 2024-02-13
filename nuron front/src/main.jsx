@@ -1,22 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.scss";
-import "./style.css";
-import "./odemeter.css";
 import { HelmetProvider } from "react-helmet-async";
-import WishlistProvider from "./context/WIshlistProvider/index.jsx";
+import App from "./App.jsx";
 import ThemeProvider from "./context/ThemeProvider/index.jsx";
-import AuthProvider from "./context/AuthProvider/index.jsx";
+import UserProvider from "./context/UserProvider/index.jsx";
+import WishlistProvider from "./context/WIshlistProvider/index.jsx";
+import "./index.scss";
+import "./odemeter.css";
+import "./style.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
       <WishlistProvider>
         <ThemeProvider>
-          <AuthProvider>
+          <UserProvider>
             <App />
-          </AuthProvider>
+          </UserProvider>
         </ThemeProvider>
       </WishlistProvider>
     </HelmetProvider>

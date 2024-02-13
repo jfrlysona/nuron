@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../../context/ThemeProvider";
-import "./index.scss";
 import { Link, NavLink } from "react-router-dom";
+import { ThemeContext } from "../../context/ThemeProvider";
+import { UserContext } from "../../context/UserProvider";
+import "./index.scss";
 function Navbar() {
   const { handleTheme, theme } = useContext(ThemeContext);
+  const { decode, logout } = useContext(UserContext);
   const [stickyNav, setStickyNav] = useState(false);
+
   useEffect(() => {
     window.addEventListener("scroll", stickNavbar);
 
@@ -48,14 +51,28 @@ function Navbar() {
             <input type="text" placeholder="Search here" />
             <i className="fa-sharp fa-light fa-magnifying-glass"></i>
           </div>
-          <Link to={"/login"}>Login</Link>
+          {decode ? (
+            <Link to={"/my-profile"}> {decode.firstName} </Link>
+          ) : (
+            <Link to={"/login"}>Login</Link>
+          )}
           <div className="icons">
+            {decode ? (
+              <div className="icon">
+                <Link to={"/login"} onClick={() => logout()}>
+                  <i className="fa-light fa-arrow-right-from-bracket"></i>
+                </Link>
+              </div>
+            ) : null}
             <div className="icon" onClick={handleTheme}>
               {theme === "dark" ? (
                 <i className="fa-light fa-sun-bright"></i>
               ) : (
                 <i className="fa-light fa-moon"></i>
               )}
+            </div>
+            <div className="icon">
+              <i className="fa-light fa-heart"></i>
             </div>
             <div className="icon">
               <i className="fa-light fa-cart-shopping"></i>
