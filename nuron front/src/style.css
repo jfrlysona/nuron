@@ -12,11 +12,13 @@
   --bg-color-element3: #242435;
   --bg-color-element4: #191925;
   --bg-color-element5: transparent;
+  --bg-color-element6: transparent;
   --blured-bg: #ffffff0d;
   --link-color: #ffffff;
   --red-text: #ea4747;
   --scrollbar-color: #5d5d7e;
   --nav-bg: #1515218c;
+  --btn-selected-color:#212E48;
 }
 .light {
   --bg-color: #f5f8fa;
@@ -33,10 +35,12 @@
   --bg-color-element3: #f5f8fa;
   --bg-color-element4: #ffffff;
   --bg-color-element5: #ffffff;
+  --bg-color-element6: #f5f8fa;
   --link-color: #1d1d1d;
   --red-text: #dc3545;
   --scrollbar-color: #77777b;
   --nav-bg: #f5f8fa;
+  --btn-selected-color:#00A3FF;
 }
 body {
   background-color: var(--bg-color);

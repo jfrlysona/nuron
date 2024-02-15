@@ -17,6 +17,7 @@ import PrivateRouter from "./routes/PrivateRouter";
 import CreateVariantsPage from "./pages/CreateVariantsPage";
 import CreateNFTPage from "./pages/CreateNFTPage";
 import CreateCollectionPage from "./pages/CreateCollectionPage";
+import SettingsPage from "./pages/SettingsPage";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
                 <Route path="/create-variants" element={<CreateVariantsPage />} />
                 <Route path="/create-nft" element={<CreateNFTPage />} />
                 <Route path="/create-collection" element={<CreateCollectionPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
               </Route>
             </Route>
           </Routes>
