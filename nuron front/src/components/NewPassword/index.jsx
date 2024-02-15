@@ -25,11 +25,9 @@ function NewPassword() {
           email: values.email,
           password: values.password,
         }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          addToken(data);
-        });
+      });
+      const data = await response.json();
+      addToken(data);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message);

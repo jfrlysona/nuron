@@ -21,19 +21,18 @@ function Login() {
           password: values.password,
         }),
       });
+      const data = await response.json();
+      addToken(data);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message);
       }
 
-      const data = await response.json();
-      addToken(data);
       resetForm();
       setError(null);
       navigate("/");
     } catch (error) {
       setError(error.message);
-      console.log(error.message);
     }
   };
   return (

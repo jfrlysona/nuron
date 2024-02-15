@@ -14,6 +14,9 @@ import RegisterPage from "./pages/RegisterPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import TermsPage from "./pages/TermsPage";
 import PrivateRouter from "./routes/PrivateRouter";
+import CreateVariantsPage from "./pages/CreateVariantsPage";
+import CreateNFTPage from "./pages/CreateNFTPage";
+import CreateCollectionPage from "./pages/CreateCollectionPage";
 
 function App() {
   return (
@@ -29,12 +32,15 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/sign-up" element={<RegisterPage />} />
-              <Route path="/reset-password" element={<ResetPasswordPage />} />
-              <Route path="/new-password" element={<NewPasswordPage />} />
               <Route path="*" element={<NotFoundPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/reset-password" element={<ResetPasswordPage />} />
               <Route element={<PrivateRouter roles={["User", "Admin"]} />}>
-                <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                <Route path="/terms" element={<TermsPage />} />
+                <Route path="/new-password" element={<NewPasswordPage />} />
+                <Route path="/create-variants" element={<CreateVariantsPage />} />
+                <Route path="/create-nft" element={<CreateNFTPage />} />
+                <Route path="/create-collection" element={<CreateCollectionPage />} />
               </Route>
             </Route>
           </Routes>
