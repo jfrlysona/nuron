@@ -1,9 +1,14 @@
+import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { UserContext } from "../../context/UserProvider";
+import toast, { Toaster } from "react-hot-toast";
+const successToast = () => toast.success("Changes are saved!");
+const errorToast = () => toast.error("Changes are not saved!");
 import "./index.scss";
-import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../../hooks/useLocalStorage";
 function Settings() {
   const [openImages, setOpenImages] = useState(true);
   const [openInformation, setOpenInformation] = useState(false);
@@ -11,7 +16,29 @@ function Settings() {
   const [openNotification, setOpenNotification] = useState(false);
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const { decode } = useContext(UserContext);
+  const { decode, token, user, setUser } = useContext(UserContext);
+  const [orderConfirmationNotice, setOrderConfirmationNotice] = useLocalStorage(
+    "orderConfirmationNotice",
+    true
+  );
+  const [newItemsNotification, setNewItemsNotification] = useLocalStorage(
+    "newItemsNotification",
+    true
+  );
+  const [newBidNotification, setNewBidNotification] = useLocalStorage(
+    "newBidNotification",
+    true
+  );
+  const [paymentCardNotification, setPaymentCardNotification] = useLocalStorage(
+    "paymentCardNotification",
+    true
+  );
+  const [endingBidNotification, setEndingBidNotification] = useLocalStorage(
+    "endingBidNotification",
+    true
+  );
+  const [productApprovalNotification, setProductApprovalNotification] =
+    useLocalStorage("productApprovalNotification", true);
 
   const handleResetPassword = async (values, { resetForm }) => {
     try {
@@ -31,15 +58,59 @@ function Settings() {
       }
       resetForm();
       setError(null);
+      successToast();
     } catch (error) {
       setError(error.message);
       console.log(error.message);
+      errorToast();
     }
   };
+
+  const handleChangeInfo = async (values) => {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/user/" + decode.userId,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            email: values.email,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            bio: values.bio,
+            role: values.role,
+            gender: values.gender,
+            phone: values.phone,
+            location: values.location,
+            address: values.address,
+            currency: values.currency,
+          }),
+        }
+      );
+      const data = await response.json();
+      setUser(data);
+      successToast();
+    } catch (error) {
+      console.log(error.message);
+      errorToast();
+    }
+  };
+  const handleSaveOptions = () => {
+    successToast();
+  };
+
   return (
     <section id="settings">
       <div className="container">
-        <h1>Profile Settings</h1>
+        <div className="title">
+          <h1>Profile Settings</h1>
+          <Link to="my-profile">
+            <i className="fa-light fa-arrow-right-long"></i>
+          </Link>
+        </div>
         <div className="content">
           <div className="tabs">
             <button
@@ -129,7 +200,7 @@ function Settings() {
               }
             >
               <i
-                class="fa-light fa-bell"
+                className="fa-light fa-bell"
                 style={openNotification ? { color: "white" } : null}
               ></i>
               Notification Setting
@@ -163,16 +234,16 @@ function Settings() {
             <div className="tab-content change-info">
               <Formik
                 initialValues={{
-                  firstName: "",
-                  lastName: "",
-                  email: "",
-                  bio: "",
-                  role: "",
-                  gender: "",
-                  phone: 0,
-                  location: "",
-                  address: "",
-                  currency: "",
+                  firstName: user?.firstName || "",
+                  lastName: user?.lastName || "",
+                  email: user?.email || "",
+                  bio: user?.bio || "",
+                  role: user?.role || "",
+                  gender: user?.gender || "",
+                  phone: user?.phone || "",
+                  location: user?.location || "",
+                  address: user?.address || "",
+                  currency: user?.currency || "",
                 }}
                 validationSchema={Yup.object({
                   firstName: Yup.string()
@@ -186,22 +257,22 @@ function Settings() {
                     .required("Required"),
                 })}
                 onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                  }, 400);
+                  setSubmitting(false);
+                  handleChangeInfo(values);
                 }}
               >
                 <Form>
-                  <div className="form">
-                    <label htmlFor="firstName">First Name</label>
-                    <Field name="firstName" type="text" />
-                    <ErrorMessage name="firstName" component={"span"} />
-                  </div>
-                  <div className="form">
-                    <label htmlFor="lastName">Last Name</label>
-                    <Field name="lastName" type="text" />
-                    <ErrorMessage name="lastName" component={"span"} />
+                  <div className="line">
+                    <div className="form">
+                      <label htmlFor="firstName">First Name</label>
+                      <Field name="firstName" type="text" />
+                      <ErrorMessage name="firstName" component={"span"} />
+                    </div>
+                    <div className="form">
+                      <label htmlFor="lastName">Last Name</label>
+                      <Field name="lastName" type="text" />
+                      <ErrorMessage name="lastName" component={"span"} />
+                    </div>
                   </div>
                   <div className="form">
                     <label htmlFor="email">Email Address</label>
@@ -213,39 +284,46 @@ function Settings() {
                     <Field name="bio" type="text" as="textarea" />
                     <ErrorMessage name="bio" component={"span"} />
                   </div>
-                  <div className="form">
-                    <label htmlFor="role">Your Role</label>
-                    <Field name="role" type="text" />
-                    <ErrorMessage name="role" component={"span"} />
+                  <div className="line">
+                    <div className="form">
+                      <label htmlFor="role">Your Role</label>
+                      <Field name="role" type="text" readOnly />
+                      <ErrorMessage name="role" component={"span"} />
+                    </div>
+                    <div className="form">
+                      <label htmlFor="gender">Your Gender</label>
+                      <Field name="gender" type="text" />
+                      <ErrorMessage name="gender" component={"span"} />
+                    </div>
                   </div>
-                  <div className="form">
-                    <label htmlFor="role">Your Gender</label>
-                    <Field name="role" type="text" />
-                    <ErrorMessage name="role" component={"span"} />
+                  <div className="line">
+                    <div className="form">
+                      <label htmlFor="currency">Currency</label>
+                      <Field name="currency" type="text" />
+                      <ErrorMessage name="currency" component={"span"} />
+                    </div>
+                    <div className="form">
+                      <label htmlFor="phone">Phone Number</label>
+                      <Field name="phone" type="text" />
+                      <ErrorMessage name="phone" component={"span"} />
+                    </div>
                   </div>
-                  <div className="form">
-                    <label htmlFor="currency">Currency</label>
-                    <Field name="currency" type="text" />
-                    <ErrorMessage name="currency" component={"span"} />
-                  </div>
-                  <div className="form">
-                    <label htmlFor="phone">Phone Number</label>
-                    <Field name="phone" type="text" />
-                    <ErrorMessage name="phone" component={"span"} />
-                  </div>
-                  <div className="form">
-                    <label htmlFor="location">Location</label>
-                    <Field name="location" type="text" />
-                    <ErrorMessage name="location" component={"span"} />
-                  </div>
-                  <div className="form">
-                    <label htmlFor="address">Address</label>
-                    <Field name="address" type="text" />
-                    <ErrorMessage name="address" component={"span"} />
+                  <div className="line">
+                    <div className="form">
+                      <label htmlFor="location">Location</label>
+                      <Field name="location" type="text" />
+                      <ErrorMessage name="location" component={"span"} />
+                    </div>
+                    <div className="form">
+                      <label htmlFor="address">Address</label>
+                      <Field name="address" type="text" />
+                      <ErrorMessage name="address" component={"span"} />
+                    </div>
                   </div>
                   <button type="submit">Save</button>
                 </Form>
               </Formik>
+              <Toaster position="bottom-right" />
             </div>
           )}
           {openChangePassword && (
@@ -306,12 +384,13 @@ function Settings() {
                     <button type="submit">Save</button>
                   </Form>
                 </Formik>
+                <Toaster position="bottom-right" />
                 {error && <p>{error}</p>}
               </div>
             </div>
           )}
           {openNotification && (
-            <div className="tab-content ">
+            <div className="tab-content change-notification">
               <div className="text">
                 <h2>Make Sure Your Notification setting</h2>
                 <p>
@@ -322,32 +401,74 @@ function Settings() {
                   then select Settings
                 </p>
               </div>
-              <div className="radio-group">
-                <div className="radio">
-                  <input type="radio" name="" id="" />
-                  <label htmlFor="">Order Confirmation Notice</label>
-                </div>
-                <div className="radio">
-                  <input type="radio" name="" id="" />
-                  <label htmlFor="">New Items Notification</label>
-                </div>
-                <div className="radio">
-                  <input type="radio" name="" id="" />
-                  <label htmlFor="">New Bid Notification</label>
-                </div>
-                <div className="radio">
-                  <input type="radio" name="" id="" />
-                  <label htmlFor="">Payment Card Notification</label>
-                </div>
-                <div className="radio">
-                  <input type="radio" name="" id="" />
-                  <label htmlFor="">Ending Bid Notification Before 5 min</label>
-                </div>
-                <div className="radio">
-                  <input type="radio" name="" id="" />
-                  <label htmlFor="">Notification for approving product</label>
-                </div>
-              </div>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={orderConfirmationNotice}
+                      onChange={(e) =>
+                        setOrderConfirmationNotice(e.target.checked)
+                      }
+                    />
+                  }
+                  label="Order Confirmation Notice"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={newItemsNotification}
+                      onChange={(e) =>
+                        setNewItemsNotification(e.target.checked)
+                      }
+                    />
+                  }
+                  label="New Items Notification"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={newBidNotification}
+                      onChange={(e) => setNewBidNotification(e.target.checked)}
+                    />
+                  }
+                  label="New Bid Notification"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={paymentCardNotification}
+                      onChange={(e) =>
+                        setPaymentCardNotification(e.target.checked)
+                      }
+                    />
+                  }
+                  label="Payment Card Notification"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={endingBidNotification}
+                      onChange={(e) =>
+                        setEndingBidNotification(e.target.checked)
+                      }
+                    />
+                  }
+                  label="Ending Bid Notification Before 5 min"
+                />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={productApprovalNotification}
+                      onChange={(e) =>
+                        setProductApprovalNotification(e.target.checked)
+                      }
+                    />
+                  }
+                  label="Notification for approving product"
+                />
+              </FormGroup>
+              <button onClick={handleSaveOptions}>Save</button>
+              <Toaster position="bottom-right" />
             </div>
           )}
         </div>

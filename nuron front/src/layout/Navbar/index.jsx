@@ -5,7 +5,7 @@ import { UserContext } from "../../context/UserProvider";
 import "./index.scss";
 function Navbar() {
   const { handleTheme, theme } = useContext(ThemeContext);
-  const { decode, logout } = useContext(UserContext);
+  const { decode,user, logout } = useContext(UserContext);
   const [stickyNav, setStickyNav] = useState(false);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function Navbar() {
             <i className="fa-sharp fa-light fa-magnifying-glass"></i>
           </div>
           {decode ? (
-            <Link to={"/my-profile"}> {decode.firstName} </Link>
+            <Link to={"/my-profile"}> {user.firstName} </Link>
           ) : (
             <Link to={"/login"}>Login</Link>
           )}
