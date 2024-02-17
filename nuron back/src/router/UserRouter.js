@@ -13,5 +13,5 @@ export const UserRouter = express.Router();
 UserRouter.get("", verifyAccess(["Admin"]), getAllUsers);
 UserRouter.get("/:id", verifyAccess(["Admin", "User"]), getUserById);
 UserRouter.post("/", verifyAccess(["Admin"]), createUser);
-UserRouter.put("/:id", verifyAccess(["Admin"]), updateUser);
+UserRouter.put("/:id", verifyAccess(["Admin","User"]), updateUser);
 UserRouter.delete("/:id", verifyAccess(["Admin"]), deleteUser);

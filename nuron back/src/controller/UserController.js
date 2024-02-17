@@ -5,7 +5,7 @@ export const getAllUsers = async (req, res) => {
     const AllUsers = await UserModel.find({});
     res.status(200).json(AllUsers);
   } catch (error) {
-    res.send("Users are not Found!");
+    res.status(500).json({ message: "Users are not found" });
   }
 };
 
@@ -36,16 +36,42 @@ export const createUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { email, password, firstName, lastName, role } = req.body;
-  const user = await UserModel.findByIdAndUpdate(id, {
+  const decoded = req.decoded;
+  const user = await UserModel.findById(id);
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+  if (decoded.email !== user.email && decoded.role === "User") {
+    return res.status(403).send("You don't have access");
+  }
+  const {
     email,
-    password,
     firstName,
     lastName,
     role,
-  });
+    bio,
+    gender,
+    currency,
+    phone,
+    location,
+    address,
+  } = req.body;
+  
+  user.email = email;
+  user.firstName = firstName;
+  user.lastName = lastName;
+  user.role = role;
+  user.bio = bio;
+  user.gender = gender;
+  user.currency = currency;
+  user.phone = phone;
+  user.location = location;
+  user.address = address;
+
+  await user.save();
   res.send(user);
 };
+
 
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
