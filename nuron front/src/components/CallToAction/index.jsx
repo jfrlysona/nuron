@@ -13,7 +13,7 @@ function CallToAction() {
         and products
       </p>
       <div className="btns">
-        <button className="btn-create" onClick={() => navigate("/create-nft")}>
+        <button className="btn-create" onClick={() => navigate("/create-variants")}>
           Create
         </button>
         <button className="btn-contact" onClick={() => navigate("/contact")}>

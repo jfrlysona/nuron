@@ -15,17 +15,19 @@ function CreateVariants() {
         <div className="create-cards">
           <div className="create-card">
             <img
+              src="https://nuron-nextjs.vercel.app/_next/image?url=%2Fimages%2Fupload-variants%2Fmultiple.jpg&w=640&q=75"
+              alt=""
+            />
+            <button onClick={() => navigate("/create-collection")}>
+              Create Collection
+            </button>
+          </div>
+          <div className="create-card">
+            <img
               src="https://nuron-nextjs.vercel.app/_next/image?url=%2Fimages%2Fupload-variants%2Fsingle.jpg&w=640&q=75"
               alt=""
             />
             <button onClick={() => navigate("/create-nft")}>Create NFT</button>
-          </div>
-          <div className="create-card">
-            <img
-              src="https://nuron-nextjs.vercel.app/_next/image?url=%2Fimages%2Fupload-variants%2Fmultiple.jpg&w=640&q=75"
-              alt=""
-            />
-            <button onClick={() => navigate("/create-collection")}>Create Collection</button>
           </div>
         </div>
       </div>

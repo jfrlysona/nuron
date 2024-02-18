@@ -16,9 +16,9 @@ function CreateCollectionPage() {
       </Helmet>
       <Header
         title="Create Collection"
-        prevLink="/"
+        prevLink="/create-variants"
         currentLink="/create-collection"
-        prevPage="Home"
+        prevPage="Create Variants"
         currentPage="Create Collection"
       />
       <CreateCollection />
