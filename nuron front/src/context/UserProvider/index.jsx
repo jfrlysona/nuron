@@ -29,6 +29,23 @@ const UserProvider = ({ children }) => {
     const tokenDecoded = jwtDecode(token);
     setDecode(tokenDecoded);
   }
+
+  // function addToken(token) {
+  //   setToken(token);
+  //   const tokenDecoded = jwtDecode(token);
+  //   setDecode(tokenDecoded);
+  
+  //   const expirationTime = tokenDecoded.exp * 1000; 
+  //   const now = new Date().getTime(); 
+  //   const expiresIn = expirationTime - now;
+  
+  //   setTimeout(() => {
+  //     setToken(null);
+  //     setDecode(null);
+  //     localStorage.clear();
+  //   }, expiresIn);
+  // }
+
   function logout() {
     setToken(null);
     setDecode(null);

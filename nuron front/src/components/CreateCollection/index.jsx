@@ -15,6 +15,8 @@ function CreateCollection() {
   const [previewBanner, setPreviewBanner] = useState(null);
   const imageInput = useRef();
   const bannerInput = useRef();
+
+  
   const createNewCollection = async (values, { resetForm }) => {
     try {
       const formData = new FormData();
@@ -87,7 +89,7 @@ function CreateCollection() {
               <>
                 <img src={previewImage} alt="preview" />
                 <i
-                  class="fa-duotone fa-paintbrush"
+                  className="fa-duotone fa-paintbrush"
                   onClick={() => imageInput.current.click()}
                 ></i>
               </>
