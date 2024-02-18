@@ -1,6 +1,6 @@
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { UserContext } from "../../context/UserProvider";
@@ -39,7 +39,10 @@ function Settings() {
   );
   const [productApprovalNotification, setProductApprovalNotification] =
     useLocalStorage("productApprovalNotification", true);
-
+  const [avatar, setAvatar] = useState("");
+  const [banner, setBanner] = useState("");
+  const avatarInput = useRef();
+  const bannerInput = useRef();
   const handleResetPassword = async (values, { resetForm }) => {
     try {
       const response = await fetch("http://localhost:3000/reset-password", {
@@ -100,6 +103,55 @@ function Settings() {
   };
   const handleSaveOptions = () => {
     successToast();
+  };
+  const changeAvatar = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("avatar", avatar);
+
+    try {
+      const response = await fetch(
+        "http://localhost:3000/user/" + decode.userId,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      setUser(data);
+      successToast();
+    } catch (error) {
+      console.error("Error changing avatar:", error);
+      errorToast();
+    }
+  };
+
+  const changeBanner = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("banner", banner);
+
+    try {
+      const response = await fetch(
+        "http://localhost:3000/user/" + decode.userId,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      setUser(data);
+      successToast();
+    } catch (error) {
+      console.error("Error changing avatar:", error);
+      errorToast();
+    }
   };
 
   return (
@@ -206,27 +258,62 @@ function Settings() {
               Notification Setting
             </button>
           </div>
+          <input
+            type="file"
+            style={{ display: "none" }}
+            onChange={(e) => setAvatar(e.target.files[0])}
+            ref={avatarInput}
+          />
+
+          <input
+            type="file"
+            style={{ display: "none" }}
+            onChange={(e) => setBanner(e.target.files[0])}
+            ref={bannerInput}
+          />
           {openImages && (
             <div className="tab-content change-image">
               <div className="avatar">
                 <h3>Change Your Profile Picture</h3>
                 <div className="img">
-                  <img
-                    src="https://nuron-nextjs.vercel.app/_next/image?url=%2Fimages%2Fprofile%2Fprofile-01.jpg&w=1920&q=75"
-                    alt=""
-                  />
+                  {user.profileImage ? (
+                    <img src={user.profileImage} alt="avatar" />
+                  ) : (
+                    <i className="fa-duotone fa-cloud-arrow-up"></i>
+                  )}
                 </div>
-                <button>Upload Profile</button>
+                <div className="btns">
+                  <button
+                    className="change-btn"
+                    onClick={(e) => avatarInput.current.click(e)}
+                  >
+                    Change
+                  </button>
+                  <button className="save-btn" onClick={(e) => changeAvatar(e)}>
+                    Save
+                  </button>
+                </div>
               </div>
               <div className="banner">
                 <h3>Change Your Banner Image</h3>
                 <div className="img">
-                  <img
-                    src="https://nuron-nextjs.vercel.app/_next/image?url=%2Fimages%2Fprofile%2Fcover-01.jpg&w=1920&q=75"
-                    alt=""
-                  />
+                  {user.bannerImage ? (
+                    <img src={user.bannerImage} alt="avatar" />
+                  ) : (
+                    <i className="fa-duotone fa-cloud-arrow-up"></i>
+                  )}
                 </div>
-                <button>Upload Banner</button>
+                <div className="btns">
+                  <button
+                    className="change-btn"
+                    onClick={() => bannerInput.current.click()}
+                  >
+                    Change
+                  </button>
+                  <button className="save-btn" onClick={(e) => changeBanner(e)}>
+                    Save
+                  </button>
+                </div>
               </div>
             </div>
           )}

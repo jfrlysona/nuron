@@ -120,32 +120,56 @@
 
                     .img {
                         background-color: #ffffff14;
-                        padding: 5px 5px 1px 5px;
+                        padding: 5px;
                         border-radius: 5px;
+                        height: 250px;
+                        width: 265px;
+                        overflow: hidden;
 
                         img {
-                            height: 250px;
+                            height: 100%;
                             width: 100%;
-                            width: 265px;
                             object-fit: cover;
                             object-position: center;
                         }
+
+                        i {
+                            display: block;
+                            font-size: 60px;
+                            color: var(--upload-color);
+                            line-height: 250px;
+                            text-align: center;
+                            user-select: none;
+                        }
                     }
 
-                    button {
-                        padding: 13px;
-                        margin-top: 25px;
-                        border-radius: 10px;
-                        transition: .3s;
-                        font-size: 16px;
-                        letter-spacing: 0.5px;
-                        border: none;
-                        color: white;
-                        background-color: #00a3ff;
-                        width: max-content;
+                    .btns {
+                        display: flex;
+                        gap: 15px;
+                        button {
+                            padding: 13px;
+                            margin-top: 25px;
+                            border-radius: 10px;
+                            transition: .3s;
+                            font-size: 16px;
+                            letter-spacing: 0.5px;
+                            border: none;
+                            color: white;
+                            background-color: #00a3ff;
+                            width: max-content;
 
-                        &:hover {
+                            &:hover {
+                                background-color: #212e48;
+                            }
+                        }
+
+                        .change-btn {
+                            background-color: #00a3ff;
+                        }
+
+                        .save-btn {
                             background-color: #212e48;
+                            padding: 13px 23px 13px 23px;
                         }
                     }
                 }
@@ -162,31 +186,55 @@
 
                     .img {
                         background-color: #ffffff14;
-                        padding: 5px 5px 1px 5px;
+                        padding: 5px;
                         border-radius: 5px;
                         overflow: hidden;
+                        height: 250px;
+                        width: 100%;
 
                         img {
-                            height: 250px;
+                            height: 100%;
                             width: 100%;
                             object-fit: cover;
                             object-position: center;
                         }
+
+                        i {
+                            display: block;
+                            font-size: 60px;
+                            color: var(--upload-color);
+                            line-height: 250px;
+                            text-align: center;
+                            width: 580px;
+                            user-select: none;
+                        }
                     }
 
-                    button {
-                        padding: 13px;
-                        margin-top: 25px;
-                        border-radius: 10px;
-                        transition: .3s;
-                        font-size: 16px;
-                        letter-spacing: 0.5px;
-                        border: none;
-                        color: white;
-                        background-color: #00a3ff;
-                        width: max-content;
+                    .btns {
+                        display: flex;
+                        gap: 15px;
+                        button {
+                            padding: 13px;
+                            margin-top: 25px;
+                            border-radius: 10px;
+                            transition: .3s;
+                            font-size: 16px;
+                            letter-spacing: 0.5px;
+                            border: none;
+                            color: white;
+                            width: max-content;
 
-                        &:hover {
+                            &:hover {
+                                background-color: #212e48;
+                            }
+                        }
+
+                        .change-btn {
+                            background-color: #00a3ff;
+                        }
+
+                        .save-btn {
+                            padding: 13px 23px 13px 23px;
                             background-color: #212e48;
                         }
                     }

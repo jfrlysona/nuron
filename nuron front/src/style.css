@@ -19,6 +19,7 @@
   --scrollbar-color: #5d5d7e;
   --nav-bg: #1515218c;
   --btn-selected-color:#212E48;
+  --upload-color:#acacac;
 }
 .light {
   --bg-color: #f5f8fa;
@@ -41,6 +42,7 @@
   --scrollbar-color: #77777b;
   --nav-bg: #f5f8fa;
   --btn-selected-color:#00A3FF;
+  --upload-color:#00A3FF;
 }
 body {
   background-color: var(--bg-color);
