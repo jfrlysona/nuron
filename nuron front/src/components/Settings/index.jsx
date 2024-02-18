@@ -292,6 +292,7 @@ function Settings() {
                   <button className="save-btn" onClick={(e) => changeAvatar(e)}>
                     Save
                   </button>
+                  <Toaster position="bottom-right" />
                 </div>
               </div>
               <div className="banner">
@@ -313,6 +314,7 @@ function Settings() {
                   <button className="save-btn" onClick={(e) => changeBanner(e)}>
                     Save
                   </button>
+                  <Toaster position="bottom-right" />
                 </div>
               </div>
             </div>
