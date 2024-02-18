@@ -34,16 +34,10 @@ export const createUser = async (req, res) => {
   }
 };
 
-export const updateUser = async (req, res) => {
+export const updateUser = async (req, res, next) => {
   const { id } = req.params;
   const decoded = req.decoded;
-  const user = await UserModel.findById(id);
-  if (!user) {
-    return res.status(404).send("User not found");
-  }
-  if (decoded.email !== user.email && decoded.role === "User") {
-    return res.status(403).send("You don't have access");
-  }
+
   const {
     email,
     firstName,
@@ -56,22 +50,47 @@ export const updateUser = async (req, res) => {
     location,
     address,
   } = req.body;
-  
-  user.email = email;
-  user.firstName = firstName;
-  user.lastName = lastName;
-  user.role = role;
-  user.bio = bio;
-  user.gender = gender;
-  user.currency = currency;
-  user.phone = phone;
-  user.location = location;
-  user.address = address;
 
-  await user.save();
-  res.send(user);
+  const update = {
+    email,
+    firstName,
+    lastName,
+    role,
+    bio,
+    gender,
+    currency,
+    phone,
+    location,
+    address,
+  };
+
+  const user = await UserModel.findById(id);
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+  if (decoded.email !== user.email && decoded.role === "User") {
+    return res.status(403).send("You don't have access");
+  }
+
+  try {
+    const updatedUser = await UserModel.findByIdAndUpdate(id, update, {
+      new: true,
+    });
+
+    if (req.files && req.files["avatar"]) {
+    updatedUser.profileImage = "http://localhost:3000/" + req.files["avatar"][0].filename;
+    }
+
+    if (req.files && req.files["banner"]) {
+    updatedUser.bannerImage ="http://localhost:3000/" +req.files["banner"][0].filename;
+    }
+
+    await updatedUser.save();
+    res.send(updatedUser);
+  } catch (error) {
+    res.status(500).json("Error updating user");
+  }
 };
-
 
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
