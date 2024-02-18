@@ -1,4 +1,5 @@
 import { CollectionModel } from "../model/CollectionModel.js";
+import { UserModel } from "../model/UserModel.js";
 
 export const getAllCollections = async (req, res) => {
   try {
@@ -19,24 +20,35 @@ export const getCollectionById = async (req, res) => {
   }
 };
 
-export const createCollection = async (req, res) => {
+export const createCollection = async (req, res, next) => {
   try {
-    const {
-      name,
-      image,
-      bannerImage,
-      description,
-      createdBy,
-    } = req.body;
+    const { name, description, createdBy } = req.body;
     const newCollection = CollectionModel({
       name,
-      image,
-      bannerImage,
       description,
       createdBy,
     });
+
+    if (req.files && req.files["image"]) {
+      newCollection.image =
+        "http://localhost:3000/" + req.files["image"][0].filename;
+    }
+
+    if (req.files && req.files["banner"]) {
+      newCollection.bannerImage =
+        "http://localhost:3000/" + req.files["banner"][0].filename;
+    }
+
     await newCollection.save();
-    res.send(newCollection);
+
+    const user = await UserModel.findByIdAndUpdate(
+      createdBy,
+      {
+        $push: { collections: newCollection._id },
+      },
+      { new: true }
+    );
+    res.json({ newCollection, user });
   } catch (error) {
     res.status(500).json("Collection is not created!");
   }
@@ -60,6 +72,20 @@ export const updateCollection = async (req, res) => {
 
 export const deleteCollection = async (req, res) => {
   const { id } = req.params;
-  const collection = await CollectionModel.findByIdAndDelete(id);
-  res.send(collection);
+  try {
+    const collection = await CollectionModel.findByIdAndDelete(id);
+    if (!collection) {
+      return res.status(404).json({ message: "Collection not found" });
+    }
+
+    await UserModel.updateOne(
+      { collections: id },
+      { $pull: { collections: id } }
+    );
+
+    res.json({ message: "Collection deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting collection" });
+  }
 };
+

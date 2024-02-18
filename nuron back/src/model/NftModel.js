@@ -11,6 +11,6 @@ const nftSchema = new Schema({
   endsAt: Date,
   image: String,
   views: { type: Number, default: 0 },
-  owners: { type: Number, default: 0 },
+  // owners: { type: Number, default: 0 },
 });
 export const NftModel = mongoose.model("nfts", nftSchema);

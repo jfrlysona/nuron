@@ -7,7 +7,6 @@ import { UserRouter } from "./src/router/UserRouter.js";
 import { NftRouter } from "./src/router/NftRouter.js";
 import { CollectionRouter } from "./src/router/CollectionRouter.js";
 
-// const upload = multer({ storage: storage });
 const app = express();
 const port = process.env.PORT;
 const key = process.env.KEY;
