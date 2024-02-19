@@ -3,6 +3,7 @@ import HomeHeader from "../../components/HomeHeader";
 import BrandArea from "../../components/brandArea";
 import VideoArea from "../../components/VideoArea";
 import { Helmet } from "react-helmet-async";
+import TopCollection from "../../components/TopCollection";
 
 function HomePage() {
   return (
@@ -16,6 +17,7 @@ function HomePage() {
         />
       </Helmet>
       <HomeHeader />
+      <TopCollection/>
       <VideoArea />
       <BrandArea />
     </>

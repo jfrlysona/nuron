@@ -19,8 +19,9 @@
   --red-text: #ea4747;
   --scrollbar-color: #5d5d7e;
   --nav-bg: #1515218c;
-  --btn-selected-color:#212E48;
-  --upload-color:#acacac;
+  --btn-selected-color: #212e48;
+  --btn-selected-color2: #212e48;
+  --upload-color: #acacac;
 }
 .light {
   --bg-color: #f5f8fa;
@@ -43,10 +44,10 @@
   --red-text: #dc3545;
   --scrollbar-color: #77777b;
   --nav-bg: #f5f8fa;
-  --btn-selected-color:#00A3FF;
-  --upload-color:#00A3FF;
+  --btn-selected-color: #00a3ff;
+  --btn-selected-color2: #f5f8fa;
+  --upload-color: #00a3ff;
 }
 body {
   background-color: var(--bg-color);
 }
-

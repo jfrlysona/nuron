@@ -1,0 +1,88 @@
+#collectionCard {
+    padding: 18px;
+    border-radius: 5px;
+    background-color: var(--bg-color-element);
+    width: 329px;
+    height: 347px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .images {
+        height: 100%;
+        position: relative;
+
+        .banner-border {
+            overflow: hidden;
+            border-radius: 5px;
+            height: 100%;
+
+            .img-banner {
+                border-radius: 5px;
+                width: 100%;
+                transition: all 400ms;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+
+                &:hover {
+                    scale: 1.1;
+                }
+
+            }
+        }
+
+        .img-round-border {
+            position: absolute;
+            bottom: -30px;
+            left: 35%;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            background-color: #212E48;
+            padding: 5px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .img-round {
+                border-radius: 50%;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+
+    .text {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 0 7px;
+
+        a {
+            font-size: 20px;
+            line-height: 25px;
+            color: var(--heading-color);
+            transition: all 300ms;
+            text-transform: capitalize;
+            text-decoration: none;
+            cursor: pointer;
+
+            &:hover {
+                color: #00A3FF;
+            }
+        }
+
+        span {
+            font-size: 14px;
+            line-height: 21px;
+            padding: 5px 8px;
+            border-radius: 3px;
+            color: var(--text-heading);
+            background-color: var(--btn-selected-color2);
+        }
+    }
+}

@@ -18,6 +18,8 @@ import CreateVariantsPage from "./pages/CreateVariantsPage";
 import CreateNFTPage from "./pages/CreateNFTPage";
 import CreateCollectionPage from "./pages/CreateCollectionPage";
 import SettingsPage from "./pages/SettingsPage";
+import CollectionsPage from "./pages/CollectionsPage";
+import CollectionDetailsPage from "./pages/CollectionDetailsPage";
 
 function App() {
   return (
@@ -35,10 +37,12 @@ function App() {
               <Route path="/sign-up" element={<RegisterPage />} />
               <Route path="*" element={<NotFoundPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/new-password" element={<NewPasswordPage />} />
+              <Route path="/collections" element={<CollectionsPage />} />
+              <Route path="/collection/:id" element={<CollectionDetailsPage />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/reset-password" element={<ResetPasswordPage />} />
               <Route element={<PrivateRouter roles={["User", "Admin"]} />}>
-                <Route path="/new-password" element={<NewPasswordPage />} />
                 <Route path="/create-variants" element={<CreateVariantsPage />} />
                 <Route path="/create-nft" element={<CreateNFTPage />} />
                 <Route path="/create-collection" element={<CreateCollectionPage />} />

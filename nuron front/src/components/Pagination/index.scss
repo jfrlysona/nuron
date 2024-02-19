@@ -1,0 +1,49 @@
+.pagination {
+    height: 58px;
+    display: grid;
+    margin: 75px auto 0 !important;
+
+    ul {
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color-element);
+        border-radius: 6px;
+        padding: 0 4px;
+        margin: 0 auto !important;
+
+        li {
+            button {
+                width: 47px;
+                height: 40px;
+                border: none;
+                background-color: var(--bg-color-element3);
+                color: var(--text-color);
+                font-size: 16px;
+                border-radius: 6px;
+                transition: all 200ms;
+
+                &:hover {
+                    color: #fff !important;
+                    border-color: #00a3ff !important;
+                    background-color: #00a3ff !important;
+                }
+
+                &:hover .MuiSvgIcon-root {
+                    fill: #fff !important;
+
+                }
+            }
+        }
+    }
+}
+
+.Mui-selected {
+    color: #fff !important;
+    border-color: #00a3ff !important;
+    background-color: #00a3ff !important;
+}
+.css-1oj2twp-MuiPagination-root{
+    border-bottom: none !important;
+}
+.MuiPaginationItem-previousNext{
+    padding: 0 30px !important;
+}

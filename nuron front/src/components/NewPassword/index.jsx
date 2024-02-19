@@ -4,13 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { ThemeContext } from "../../context/ThemeProvider";
 import "./index.scss";
-import { UserContext } from "../../context/UserProvider";
 
 function NewPassword() {
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const { theme } = useContext(ThemeContext);
-  const { addToken } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -26,8 +24,7 @@ function NewPassword() {
           password: values.password,
         }),
       });
-      const data = await response.json();
-      addToken(data);
+     
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message);

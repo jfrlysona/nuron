@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
@@ -30,7 +30,6 @@ function CreateNFT() {
       formData.append("name", values.name);
       formData.append("description", values.description);
       formData.append("category", values.category);
-      // const tagsArray = values.tags.split(",").map((tag) => tag.trim());JSON.stringify(tagsArray))
       formData.append("tags", values.tags);
       formData.append("price", values.price);
       formData.append("endingOn", values.endingOn);
@@ -90,7 +89,7 @@ function CreateNFT() {
             name: "",
             description: "",
             category: "",
-            tags: [],
+            tags: "",
             price: 0,
             endingOn: "",
             collectionId: "",
@@ -103,10 +102,7 @@ function CreateNFT() {
               .min(20, "Must be 20 characters at least")
               .required("Required"),
             category: Yup.string().required("Required"),
-            tags: Yup.array()
-              .of(Yup.string())
-              .min(1, "At least one tag is required")
-              .required("At least one tag is required"),
+            tags: Yup.string().required("At least one tag is required"),
             price: Yup.number()
               .min(0, "Must be a positive number")
               .required("Required"),
@@ -125,7 +121,7 @@ function CreateNFT() {
               aria-labelledby="my-radio-group"
               className="collection-group"
             >
-              {user?.collections ? (
+              {user?.collections && user.collections.length > 0 ? (
                 user.collections.map((collectionId) => {
                   const selectedCollection = collection.find(
                     (item) => item._id === collectionId
@@ -151,7 +147,7 @@ function CreateNFT() {
                 })
               ) : (
                 <p>
-                  You don't have a collection.
+                  You don't have any collection.
                   <Link to="/create-collection">Create a collection!</Link>
                 </p>
               )}
@@ -174,11 +170,7 @@ function CreateNFT() {
             </div>
             <div className="form">
               <label htmlFor="tags">Tags</label>
-              <div className="tags-form">
-                <Field name="tags[0]" />
-                <Field name="tags[1]" />
-                <Field name="tags[2]" />
-              </div>
+              <Field name="tags" type="text" />
               <ErrorMessage name="tags" component={"span"} />
             </div>
             <div className="form">
