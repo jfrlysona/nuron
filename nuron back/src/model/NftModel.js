@@ -5,7 +5,7 @@ const nftSchema = new Schema({
   description: String,
   collectionId: { type: Schema.Types.ObjectId, ref: "collections" },
   category:String,
-  tags:Array,
+  tags:String,
   authorId: { type: Schema.Types.ObjectId, ref: "users" },
   price: Number,
   createdAt: { type: Date, default: Date.now },

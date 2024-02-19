@@ -11,7 +11,7 @@ import { upload } from "../middleware/UploadMiddleware.js";
 
 export const UserRouter = express.Router();
 
-UserRouter.get("", verifyAccess(["Admin"]), getAllUsers);
+UserRouter.get("/", getAllUsers);
 UserRouter.get("/:id", verifyAccess(["Admin", "User"]), getUserById);
 UserRouter.post("/", verifyAccess(["Admin"]), createUser);
 UserRouter.put(
