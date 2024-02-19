@@ -14,13 +14,6 @@ function CollectionDetailsPage() {
           type="image/x-icon"
         />
       </Helmet>
-      <Header
-        title="Collection Details"
-        prevLink="/collections"
-        currentLink="/collection/:id"
-        prevPage="Collections"
-        currentPage="Collection Details"
-      />
       <CollectionDetails />
     </>
   );
