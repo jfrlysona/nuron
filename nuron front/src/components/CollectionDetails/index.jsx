@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import CollectionHeading from "../CollectionHeading";
 import "./index.scss";
 import NftCard from "../NftCard";
+import PaginationRounded from "../Pagination";
 
 function CollectionDetails() {
   const { id } = useParams();
@@ -10,6 +11,9 @@ function CollectionDetails() {
   const [author, setAuthor] = useState([]);
   const [seeMore, setSeeMore] = useState(false);
   const [nft, setNft] = useState([]);
+  const [paginatedNfts, setPaginatedNfts] = useState([]);
+  const [nftsPerPage, setNftsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     fetch("http://localhost:3000/collection/" + id)
       .then((res) => res.json())
@@ -30,6 +34,19 @@ function CollectionDetails() {
       .then((data) => setNft(data));
   }, []);
 
+  useEffect(() => {
+    if (collection.nfts) {
+      const paginatedData = collection.nfts.slice(
+        (currentPage - 1) * nftsPerPage,
+        currentPage * nftsPerPage
+      );
+      setPaginatedNfts(paginatedData);
+    }
+  }, [currentPage, nftsPerPage, collection.nfts]);
+
+  let totalPages = Math.ceil(
+    (collection.nfts && collection.nfts.length) / nftsPerPage
+  );
   const formattedDate = new Date(collection.createdAt).toLocaleDateString(
     "en-GB",
     {
@@ -102,17 +119,37 @@ function CollectionDetails() {
         <div className="items">
           <h2>Items</h2>
           <div className="nfts">
-            {collection.nfts && collection.nfts.length > 0 ? (
-              collection.nfts.map((nftId) => {
+            {paginatedNfts && paginatedNfts.length > 0 ? (
+              paginatedNfts.map((nftId) => {
                 const foundNft = nft.find((nftItem) => nftItem._id === nftId);
                 return foundNft ? (
-                  <NftCard key={nftId} img={foundNft.image} name={foundNft.name}  price={foundNft.price} likes={foundNft.likes} />
+                  <NftCard
+                    key={nftId}
+                    img={foundNft.image}
+                    name={foundNft.name}
+                    price={foundNft.price}
+                    likes={foundNft.likes}
+                    id={foundNft._id}
+                    collection={collection.name}
+                    created={foundNft.createdAt}
+                    ending={foundNft.endingOn}
+                    collectionId={foundNft.collectionId}
+                    item={foundNft}
+                  />
                 ) : null;
               })
             ) : (
               <p>There are no NFTs in this collection yet</p>
             )}
           </div>
+
+          {totalPages > 1 && (
+            <PaginationRounded
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalPages={totalPages}
+            />
+          )}
         </div>
       </div>
     </section>

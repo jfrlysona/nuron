@@ -1,29 +1,28 @@
-import React, { createContext } from "react";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { UserContext } from "../UserProvider";
 export const WishlistContext = createContext();
 function WishlistProvider({ children }) {
-  const [wishlist, setWishlist] = useLocalStorage("wishlist", []);
+  const [wishlist, setWishlist] = useState([]);
   function addWishlist(item) {
-    if (wishlist.find((x) => x.id === item.id)) {
-      setWishlist(wishlist.filter((x) => x.id !== item.id));
+    const index = wishlist.findIndex((x) => x.id === item._id);
+    if (index === -1) {
+      setWishlist([...wishlist, { ...item, count: 1 }]);
     } else {
-      setWishlist([...wishlist, item]);
+      removeItemWishlist(item);
     }
   }
 
   function removeItemWishlist(item) {
-    setWishlist(wishlist.filter((x) => x.id !== item.id));
+    setWishlist(wishlist.filter((x) => x.id !== item._id));
   }
 
   function isWishlist(item) {
-    return wishlist.findIndex((x) => x.id === item.id) === -1 ? false : true;
+    return wishlist.findIndex((x) => x.id === item._id) === -1 ? false : true;
   }
 
-  const datas = { wishlist, addWishlist, removeItemWishlist, isWishlist };
+  const data = { wishlist, addWishlist, removeItemWishlist, isWishlist };
   return (
-    <WishlistContext.Provider value={datas}>
-      {children}
-    </WishlistContext.Provider>
+    <WishlistContext.Provider value={data}>{children}</WishlistContext.Provider>
   );
 }
 

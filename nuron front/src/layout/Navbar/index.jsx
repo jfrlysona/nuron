@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeProvider";
 import { UserContext } from "../../context/UserProvider";
 import "./index.scss";
 function Navbar() {
   const { handleTheme, theme } = useContext(ThemeContext);
-  const { decode,user, logout } = useContext(UserContext);
+  const { decode, user, logout } = useContext(UserContext);
   const [stickyNav, setStickyNav] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     window.addEventListener("scroll", stickNavbar);
 
@@ -71,7 +71,7 @@ function Navbar() {
                 <i className="fa-light fa-moon"></i>
               )}
             </div>
-            <div className="icon">
+            <div className="icon" onClick={() => navigate("/wishlist")}>
               <i className="fa-light fa-heart"></i>
             </div>
             <div className="icon">

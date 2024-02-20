@@ -21,6 +21,8 @@ import SettingsPage from "./pages/SettingsPage";
 import CollectionsPage from "./pages/CollectionsPage";
 import CollectionDetailsPage from "./pages/CollectionDetailsPage";
 import ShopPage from "./pages/ShopPage";
+import NftDetailsPage from "./pages/NftDetailsPage";
+import WishlistPage from "./pages/WishlistPage";
 
 function App() {
   return (
@@ -41,10 +43,12 @@ function App() {
               <Route path="/new-password" element={<NewPasswordPage />} />
               <Route path="/collections" element={<CollectionsPage />} />
               <Route path="/collection/:id" element={<CollectionDetailsPage />} />
+              <Route path="/nft/:id" element={<NftDetailsPage />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/reset-password" element={<ResetPasswordPage />} />
               <Route path="/shop" element={<ShopPage/>} />
               <Route element={<PrivateRouter roles={["User", "Admin"]} />}>
+                <Route path="/wishlist" element={<WishlistPage />}/>
                 <Route path="/create-variants" element={<CreateVariantsPage />} />
                 <Route path="/create-nft" element={<CreateNFTPage />} />
                 <Route path="/create-collection" element={<CreateCollectionPage />} />

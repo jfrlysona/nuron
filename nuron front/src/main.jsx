@@ -8,6 +8,7 @@ import WishlistProvider from "./context/WIshlistProvider/index.jsx";
 import "./index.scss";
 import "./odemeter.css";
 import "./style.css";
+import CartProvider from "./context/CartProvider/index.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <WishlistProvider>
         <ThemeProvider>
           <UserProvider>
-            <App />
+            <CartProvider>
+              <App />
+            </CartProvider>
           </UserProvider>
         </ThemeProvider>
       </WishlistProvider>
