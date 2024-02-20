@@ -14,6 +14,7 @@
   --bg-color-element5: transparent;
   --bg-color-element6: transparent;
   --bg-color-element7: #242435;
+  --bg-color-element8: #242435;
   --blured-bg: #ffffff0d;
   --link-color: #ffffff;
   --red-text: #ea4747;
@@ -22,6 +23,7 @@
   --btn-selected-color: #212e48;
   --btn-selected-color2: #212e48;
   --upload-color: #acacac;
+  --card-hover-color:#13131d;
 }
 .light {
   --bg-color: #f5f8fa;
@@ -40,6 +42,7 @@
   --bg-color-element5: #ffffff;
   --bg-color-element6: #f5f8fa;
   --bg-color-element7: #00000024;
+  --bg-color-element8: #ffffff;
   --link-color: #1d1d1d;
   --red-text: #dc3545;
   --scrollbar-color: #77777b;
@@ -47,6 +50,7 @@
   --btn-selected-color: #00a3ff;
   --btn-selected-color2: #f5f8fa;
   --upload-color: #00a3ff;
+  --card-hover-color:#fff;
 }
 body {
   background-color: var(--bg-color);

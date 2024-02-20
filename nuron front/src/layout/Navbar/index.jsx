@@ -40,7 +40,7 @@ function Navbar() {
           <div className="pages">
             <NavLink to={"/"}>Home</NavLink>
             <NavLink to={"/about"}>About</NavLink>
-            <NavLink to={"/*"}>Shop</NavLink>
+            <NavLink to={"/shop"}>Shop</NavLink>
             <NavLink to={"/create-variants"}>Create</NavLink>
             <NavLink to={"/blog"}>Blog</NavLink>
             <NavLink to={"/contact"}>Contact</NavLink>

@@ -20,6 +20,7 @@ import CreateCollectionPage from "./pages/CreateCollectionPage";
 import SettingsPage from "./pages/SettingsPage";
 import CollectionsPage from "./pages/CollectionsPage";
 import CollectionDetailsPage from "./pages/CollectionDetailsPage";
+import ShopPage from "./pages/ShopPage";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
               <Route path="/collection/:id" element={<CollectionDetailsPage />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/reset-password" element={<ResetPasswordPage />} />
+              <Route path="/shop" element={<ShopPage/>} />
               <Route element={<PrivateRouter roles={["User", "Admin"]} />}>
                 <Route path="/create-variants" element={<CreateVariantsPage />} />
                 <Route path="/create-nft" element={<CreateNFTPage />} />

@@ -1,0 +1,166 @@
+#nft-card {
+    width: 257px;
+    height: 428px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: var(--bg-color-element8);
+    position: relative;
+
+    &::before {
+        top: auto;
+        bottom: 0;
+        border-radius: 15px;
+        background-image: linear-gradient(100deg, var(--card-hover-color), #0398ed);
+        background-repeat: repeat-x;
+        transition: all .5s;
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+    }
+
+    &:hover::before {
+        transform: rotate(2deg) translateX(-7px) translateY(11px);
+    }
+
+    &:hover .hover-btns {
+        opacity: 1;
+    }
+
+    .hover-btns {
+        position: absolute;
+        z-index: 2;
+        top: 50px;
+        opacity: 0;
+        left: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transform: translate3d(-150%, 0, 0);
+        transition: all .3s ease;
+        margin: -2px 0;
+
+        .icon-card {
+            background-color: var(--bg-color-element8);
+            border-radius: 50%;
+            width: 35px !important;
+            height: 35px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2px 0;
+            font-size: 12px;
+
+            i {
+                color: var(--heading-color);
+            }
+        }
+    }
+
+    .image {
+        border-radius: 5px;
+        overflow: hidden;
+        width: 100%;
+        height: 247px;
+
+        img {
+            width: 247px;
+            height: 247px;
+            object-fit: cover;
+            object-position: center;
+            transition: all 300ms;
+
+            &:hover {
+                scale: 1.1;
+            }
+        }
+    }
+
+    .content {
+        padding: 15px 10px 10px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-color);
+            border-bottom: none;
+            font-size: 14px;
+            line-height: 23px;
+
+            span {}
+
+            i {
+                line-height: 23px;
+                font-size: 18px;
+            }
+        }
+
+        p {
+            line-height: 23px;
+            font-size: 18px;
+            color: var(--heading-color);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+
+            .price {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                p {
+                    font-size: 12px;
+                    color: var(--text-color);
+                    line-height: 12px;
+                }
+
+                span {
+                    color: #00a3ff;
+                    font-size: 14px;
+                    line-height: 23px;
+                }
+            }
+
+            .likes {
+                display: flex;
+                gap: 3px;
+
+                i {
+                    font-size: 15px;
+                    line-height: 2;
+                    color: var(--text-color);
+                }
+
+                span {
+                    font-size: 14px;
+                    line-height: 30px;
+                    color: var(--text-color);
+                }
+            }
+        }
+
+        button {
+            font-size: 14px;
+            line-height: 21px;
+            padding: 7px 22px;
+            width: max-content;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            border: none;
+            background-color: #212e48;
+            color: white;
+            transition: all 300ms;
+
+            &:hover {
+                background-color: #00a3ff;
+            }
+        }
+    }
+}
