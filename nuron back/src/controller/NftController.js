@@ -1,5 +1,6 @@
 import { CollectionModel } from "../model/CollectionModel.js";
 import { NftModel } from "../model/NftModel.js";
+import { UserModel } from "../model/UserModel.js";
 
 export const getAllNft = async (req, res) => {
   try {
@@ -61,6 +62,7 @@ export const createNft = async (req, res, next) => {
 
 export const updateNft = async (req, res) => {
   const { id } = req.params;
+  const decoded = req.decoded;
   const {
     name,
     description,
@@ -71,8 +73,9 @@ export const updateNft = async (req, res) => {
     price,
     endingOn,
     image,
+    likes,
   } = req.body;
-  const nft = await NftModel.findByIdAndUpdate(id, {
+  const update = {
     name,
     description,
     collectionId,
@@ -82,8 +85,26 @@ export const updateNft = async (req, res) => {
     price,
     endingOn,
     image,
-  });
-  res.send(nft);
+    likes,
+  };
+
+  const user = await UserModel.findById(decoded.userId);
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+  if (decoded.email !== user.email && decoded.role === "User") {
+    return res.status(403).send("You don't have access");
+  }
+
+  try {
+    const updatedNft = await NftModel.findByIdAndUpdate(id, update, {
+      new: true,
+    });
+    await updatedNft.save();
+    res.send(updatedNft);
+  } catch (error) {
+    res.status(500).json("Error updating nft");
+  }
 };
 
 export const deleteNft = async (req, res) => {

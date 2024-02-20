@@ -50,6 +50,8 @@ export const updateUser = async (req, res, next) => {
     phone,
     location,
     address,
+    wishlist,
+    likedNfts,
   } = req.body;
 
   const update = {
@@ -64,6 +66,8 @@ export const updateUser = async (req, res, next) => {
     phone,
     location,
     address,
+    wishlist,
+    likedNfts,
   };
 
   const user = await UserModel.findById(id);
@@ -80,11 +84,13 @@ export const updateUser = async (req, res, next) => {
     });
 
     if (req.files && req.files["avatar"]) {
-    updatedUser.profileImage = "http://localhost:3000/" + req.files["avatar"][0].filename;
+      updatedUser.profileImage =
+        "http://localhost:3000/" + req.files["avatar"][0].filename;
     }
 
     if (req.files && req.files["banner"]) {
-    updatedUser.bannerImage ="http://localhost:3000/" +req.files["banner"][0].filename;
+      updatedUser.bannerImage =
+        "http://localhost:3000/" + req.files["banner"][0].filename;
     }
 
     await updatedUser.save();
