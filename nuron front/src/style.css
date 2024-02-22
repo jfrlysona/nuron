@@ -24,6 +24,7 @@
   --btn-selected-color2: #212e48;
   --upload-color: #acacac;
   --card-hover-color:#13131d;
+  --banner-color:rgb(142, 142, 142);
 }
 .light {
   --bg-color: #f5f8fa;
@@ -51,6 +52,7 @@
   --btn-selected-color2: #f5f8fa;
   --upload-color: #00a3ff;
   --card-hover-color:#fff;
+  --banner-color:rgba(255,255,255,1);
 }
 body {
   background-color: var(--bg-color);

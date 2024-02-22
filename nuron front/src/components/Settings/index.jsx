@@ -159,7 +159,7 @@ function Settings() {
       <div className="container">
         <div className="title">
           <h1>Profile Settings</h1>
-          <Link to="my-profile">
+          <Link to="/my-profile">
             <i className="fa-light fa-arrow-right-long"></i>
           </Link>
         </div>

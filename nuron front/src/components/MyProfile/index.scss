@@ -1,0 +1,186 @@
+#MyProfile {
+    padding-bottom: 100px;
+
+    .myProfileHeading {
+        height: 340px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+
+        .content {
+            position: absolute;
+            left: 45%;
+            bottom: -25%;
+
+            img {
+                border: 10px solid var(--bg-color-element3);
+                border-radius: 16px;
+                height: 150px;
+                width: 150px;
+                margin-bottom: 10px;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .user-prof-i {
+                height: 150px;
+                width: 150px;
+                border-radius: 16px;
+                background-color: var(--bg-color-element3);
+                display: grid;
+                place-content: center;
+
+                i {
+                    color: #00a3ff;
+                    user-select: none;
+                    font-size: 30px;
+                }
+            }
+
+            h2 {
+                text-transform: capitalize;
+                font-size: 25px;
+                line-height: 35px;
+                letter-spacing: 0.5px;
+                text-align: center;
+                color: var(--heading-color);
+            }
+        }
+    }
+
+    .container {
+        max-width: 1408px;
+        margin: 0 auto;
+
+        .proftext {
+            padding-top: 100px;
+
+            .icons {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+
+                .icon {
+                    height: 44px;
+                    border-radius: 5px;
+                    background-color: var(--btn-selected-color2);
+                    transition: all 300ms;
+                    line-height: 44px;
+                    color: var(--heading-color);
+                    font-size: 12px;
+                    padding: 0 15px;
+
+                    &:hover {
+                        background-color: #00a3ff;
+                        color: white;
+                    }
+
+                    i {
+                        line-height: 44px;
+                        font-size: 17px;
+                        margin-right: 7px;
+                    }
+
+                }
+            }
+
+            .bio {
+                margin: 0 auto;
+                width: max-content;
+                display: flex;
+                justify-content: center;
+                gap: 5px;
+
+                i {
+                    color: #00a3ff;
+                    padding: 20px 0 50px;
+                    font-size: 25px;
+                }
+
+                p {
+                    max-width: 700px;
+                    padding: 20px 0 50px;
+                    text-align: center;
+                    color: var(--text-color);
+                    line-height: 28px;
+                }
+            }
+        }
+
+        .tabs {
+            display: flex;
+            gap: 12px;
+            padding: 7px;
+            border: 1px solid #ffffff14;
+            background-color: var(--bg-color-element);
+            border-radius: 5px;
+            height: max-content;
+
+            button {
+                border: 1px dashed #ffffff14;
+                background-color: var(--bg-color-element6);
+                width: 130px;
+                font-size: 14px;
+                color: var(--text-color);
+                height: 50px;
+                border-radius: 6px;
+                text-align: center;
+                user-select: none;
+                transition: all 300ms;
+
+                &:hover {
+                    border: 1px dashed transparent;
+                    background-color: var(--btn-selected-color);
+                    color: white;
+                }
+            }
+        }
+
+        .tab-content {
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                padding-top: 30px;
+            }
+
+            .cards-col {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                padding-top: 30px;
+            }
+
+            .empty-tab {
+                color: var(--text-color);
+                line-height: 28px;
+                font-size: 15px;
+                text-align: center;
+                padding: 100px 0 30px;
+                grid-area: 1 / 1 / 2 / 6;
+
+                a {
+                    font-weight: 500;
+                    font-size: 16px;
+                    margin-left: 5px;
+                    color: var(--heading-color);
+                    transition: all 300ms;
+                    letter-spacing: 0.5px;
+                    text-transform: capitalize;
+                    cursor: pointer;
+                    user-select: none;
+                    display: inline-block;
+
+                    &:hover {
+                        color: #00a3ff;
+                    }
+                }
+            }
+        }
+    }
+}

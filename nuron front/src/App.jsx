@@ -23,6 +23,12 @@ import CollectionDetailsPage from "./pages/CollectionDetailsPage";
 import ShopPage from "./pages/ShopPage";
 import NftDetailsPage from "./pages/NftDetailsPage";
 import WishlistPage from "./pages/WishlistPage";
+import MyProfilePage from "./pages/MyProfilePage";
+import UserProfilePage from "./pages/UserProfilePage";
+import AdminPanelPage from "./pages/AdminPanelPage";
+import AdminUsersPage from "./pages/AdminUsersPage";
+import AdminCollectionsPage from "./pages/AdminCollectionsPage";
+import AdminNftsPage from "./pages/AdminNftsPage";
 
 function App() {
   return (
@@ -42,17 +48,37 @@ function App() {
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/new-password" element={<NewPasswordPage />} />
               <Route path="/collections" element={<CollectionsPage />} />
-              <Route path="/collection/:id" element={<CollectionDetailsPage />} />
+              <Route
+                path="/collection/:id"
+                element={<CollectionDetailsPage />}
+              />
               <Route path="/nft/:id" element={<NftDetailsPage />} />
+              <Route path="/user/:id" element={<UserProfilePage />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/reset-password" element={<ResetPasswordPage />} />
-              <Route path="/shop" element={<ShopPage/>} />
+              <Route path="/shop" element={<ShopPage />} />
               <Route element={<PrivateRouter roles={["User", "Admin"]} />}>
-                <Route path="/wishlist" element={<WishlistPage />}/>
-                <Route path="/create-variants" element={<CreateVariantsPage />} />
+                <Route path="/my-profile" element={<MyProfilePage />} />
+                <Route path="/wishlist" element={<WishlistPage />} />
+                <Route
+                  path="/create-variants"
+                  element={<CreateVariantsPage />}
+                />
                 <Route path="/create-nft" element={<CreateNFTPage />} />
-                <Route path="/create-collection" element={<CreateCollectionPage />} />
+                <Route
+                  path="/create-collection"
+                  element={<CreateCollectionPage />}
+                />
                 <Route path="/settings" element={<SettingsPage />} />
+              </Route>
+              <Route element={<PrivateRouter roles={["Admin"]} />}>
+                <Route path="/admin-panel" element={<AdminPanelPage />} />
+                <Route path="/admin-panel/users" element={<AdminUsersPage />} />
+                <Route
+                  path="/admin-panel/collections"
+                  element={<AdminCollectionsPage />}
+                />
+                <Route path="/admin-panel/nfts" element={<AdminNftsPage />} />
               </Route>
             </Route>
           </Routes>

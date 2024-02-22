@@ -56,6 +56,11 @@ function Navbar() {
           ) : (
             <Link to={"/login"}>Login</Link>
           )}
+          {decode && decode.role === "Admin" ? (
+            <Link to={"/admin-panel"}>
+              <i className="fa-light fa-circle-user"></i>
+            </Link>
+          ) : null}
           <div className="icons">
             {decode ? (
               <div className="icon">

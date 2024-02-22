@@ -8,6 +8,7 @@ function Shop() {
   const [paginatedNfts, setPaginatedNfts] = useState([]);
   const [nftsPerPage, setNftsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     fetch("http://localhost:3000/nft")
       .then((res) => res.json())
@@ -19,6 +20,7 @@ function Shop() {
       .then((res) => res.json())
       .then((data) => setCollection(data));
   }, []);
+  
   useEffect(() => {
     const paginatedData = nft.slice(
       (currentPage - 1) * nftsPerPage,
@@ -56,11 +58,13 @@ function Shop() {
             />
           ))}
         </div>
-        <PaginationRounded
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          totalPages={totalPages}
-        />
+          {totalPages > 1 && (
+            <PaginationRounded
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalPages={totalPages}
+            />
+          )}
       </div>
     </section>
   );

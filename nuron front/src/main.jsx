@@ -9,19 +9,22 @@ import "./index.scss";
 import "./odemeter.css";
 import "./style.css";
 import CartProvider from "./context/CartProvider/index.jsx";
+import LikeProvider from "./context/LikeProvider/index.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
-      <WishlistProvider>
-        <ThemeProvider>
-          <UserProvider>
+      <ThemeProvider>
+        <UserProvider>
+          <WishlistProvider>
             <CartProvider>
-              <App />
+              <LikeProvider>
+                <App />
+              </LikeProvider>
             </CartProvider>
-          </UserProvider>
-        </ThemeProvider>
-      </WishlistProvider>
+          </WishlistProvider>
+        </UserProvider>
+      </ThemeProvider>
     </HelmetProvider>
   </React.StrictMode>
 );

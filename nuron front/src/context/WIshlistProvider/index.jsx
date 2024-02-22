@@ -1,26 +1,54 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext } from "react";
 import { UserContext } from "../UserProvider";
 export const WishlistContext = createContext();
 function WishlistProvider({ children }) {
-  const [wishlist, setWishlist] = useState([]);
-  function addWishlist(item) {
-    const index = wishlist.findIndex((x) => x.id === item._id);
-    if (index === -1) {
-      setWishlist([...wishlist, { ...item, count: 1 }]);
-    } else {
-      removeItemWishlist(item);
+  const { decode, token, user, setUser } = useContext(UserContext);
+  const wishlist = user.wishlist || [];
+  async function addWishlist(itemId) {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/user/" + decode.userId,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            wishlist: [...wishlist, itemId],
+          }),
+        }
+      );
+      const data = await response.json();
+      setUser(data);
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
-  function removeItemWishlist(item) {
-    setWishlist(wishlist.filter((x) => x.id !== item._id));
+  async function removeItemWishlist(itemId) {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/user/" + decode.userId,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            wishlist: wishlist.filter((nftId) => nftId !== itemId),
+          }),
+        }
+      );
+      const data = await response.json();
+      setUser(data);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
-  function isWishlist(item) {
-    return wishlist.findIndex((x) => x.id === item._id) === -1 ? false : true;
-  }
-
-  const data = { wishlist, addWishlist, removeItemWishlist, isWishlist };
+  const data = { wishlist, addWishlist, removeItemWishlist };
   return (
     <WishlistContext.Provider value={data}>{children}</WishlistContext.Provider>
   );

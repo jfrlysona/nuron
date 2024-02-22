@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./index.scss";
 import { UserContext } from "../../context/UserProvider";
+import { WishlistContext } from "../../context/WIshlistProvider";
+import { LikeContext } from "../../context/LikeProvider";
 function NftCard({
   img,
   name,
@@ -14,159 +16,26 @@ function NftCard({
   collectionId,
 }) {
   const navigate = useNavigate();
-  const { decode, token, user, setUser } = useContext(UserContext);
-  const [nft, setNft] = useState({});
-  const [like, setLike] = useState(false);
-  const [likedByUser, setLikedByUser] = useState(false);
-
-  const likeNft = async () => {
-    try {
-      let updatedLikes = [...likes];
-      let newLikeStatus = !like;
-
-      if (newLikeStatus) {
-        updatedLikes.push(decode.userId);
-      } else {
-        updatedLikes = updatedLikes.filter(
-          (userId) => userId !== decode.userId
-        );
-      }
-
-      const response = await fetch("http://localhost:3000/nft/" + id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          likes: updatedLikes,
-        }),
-      });
-
-      const data = await response.json();
-      setNft(data);
-      setLike(newLikeStatus);
-      if (newLikeStatus) {
-        addLikeToUser();
-      } else {
-        removeLikeFromUser();
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-  async function addLikeToUser() {
-    const likedNfts = user.likedNfts || [];
-    try {
-      const response = await fetch(
-        "http://localhost:3000/user/" + decode.userId,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            likedNfts: [...likedNfts, id],
-          }),
-        }
-      );
-      const data = await response.json();
-      setUser(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-  async function removeLikeFromUser() {
-    const likedNfts = user.likedNfts || [];
-    try {
-      const response = await fetch(
-        "http://localhost:3000/user/" + decode.userId,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            likedNfts: likedNfts.filter((nftId) => nftId !== id),
-          }),
-        }
-      );
-      const data = await response.json();
-      setUser(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-  useEffect(() => {
-    if (user && user?.likedNfts && user?.likedNfts.includes(id)) {
-      setLikedByUser(true);
-    } else {
-      setLikedByUser(false);
-    }
-  }, [user, id]);
-
-  async function addWishlist() {
-    const wishlist = user.wishlist || [];
-    try {
-      const response = await fetch(
-        "http://localhost:3000/user/" + decode.userId,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            wishlist: [...wishlist, id],
-          }),
-        }
-      );
-      const data = await response.json();
-      setUser(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-  async function removeItemWishlist(itemId) {
-    const wishlist = user.wishlist || [];
-    try {
-      const response = await fetch(
-        "http://localhost:3000/user/" + decode.userId,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            wishlist: wishlist.filter((nftId) => nftId !== id),
-          }),
-        }
-      );
-      const data = await response.json();
-      setUser(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
+  const { decode } = useContext(UserContext);
+  const { wishlist, addWishlist, removeItemWishlist } =
+    useContext(WishlistContext);
+  const { likeNft, checkIfUserLikedNft } = useContext(LikeContext);
+  const isLikedByUser = checkIfUserLikedNft(id);
   return (
     <>
       <div id="nft-card">
         <div className="hover-btns">
           <div className="icon">
-            { user.wishlist.includes(id) ? (
+            {wishlist.includes(id) ? (
               <i
                 className="fa-solid fa-heart"
-                onClick={() => removeItemWishlist()}
+                style={{ color: "#00a3ff" }}
+                onClick={() => removeItemWishlist(id)}
               ></i>
             ) : (
               <i
                 className="fa-light fa-heart"
-                onClick={() => addWishlist()}
+                onClick={() => addWishlist(id)}
               ></i>
             )}
           </div>
@@ -174,8 +43,8 @@ function NftCard({
             <i className="fa-light fa-cart-shopping"></i>
           </div>
         </div>
-        <div className="image">
-          <img src={img} alt="" />
+        <div className="image" onClick={()=>navigate("/nft/"+id)}>
+          <img src={img} alt="nft image" />
         </div>
         <div className="content">
           <Link to={"/collection/" + collectionId} className="collection">
@@ -190,18 +59,19 @@ function NftCard({
               <span>${price && price.toFixed(2)}</span>
             </div>
             <div className="likes">
-              {likedByUser ? (
+              {isLikedByUser ? (
                 <i
                   className="fa-solid fa-thumbs-up"
+                  style={{ color: "#00a3ff" }}
                   onClick={() => {
-                    decode ? likeNft() : navigate("/login");
+                    decode ? likeNft(id) : navigate("/login");
                   }}
                 ></i>
               ) : (
                 <i
                   className="fa-light fa-thumbs-up"
                   onClick={() => {
-                    decode ? likeNft() : navigate("/login");
+                    decode ? likeNft(id) : navigate("/login");
                   }}
                 ></i>
               )}

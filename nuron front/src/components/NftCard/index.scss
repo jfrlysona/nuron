@@ -143,12 +143,14 @@
             .likes {
                 display: flex;
                 gap: 3px;
+                user-select: none;
 
                 i {
                     font-size: 15px;
                     line-height: 2;
                     color: var(--text-color);
                     transition: all 300ms;
+                    cursor: pointer;
 
                     &:hover {
                         color: #00a3ff;

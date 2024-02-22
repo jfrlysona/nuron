@@ -5,7 +5,17 @@ import { UserContext } from "../context/UserProvider";
 const PrivateRoute = ({ roles }) => {
   const { decode } = useContext(UserContext);
 
-  return roles.includes(decode?.role) ? <Outlet /> : <Navigate to="/login" />;
+  return decode ? (
+    roles.includes(decode?.role) ? (
+      <Outlet />
+    ) : (
+      <Navigate to="/" />
+    )
+  ) : roles.includes(decode?.role) ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" />
+  );
 };
 
 export default PrivateRoute;
