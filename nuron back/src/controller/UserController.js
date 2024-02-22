@@ -14,9 +14,6 @@ export const getUserById = async (req, res) => {
     const { id } = req.params;
     const decoded = req.decoded;
     const user = await UserModel.findById(id);
-    if (decoded.email !== user.email && decoded.role === "User") {
-      return res.send("you don't have access");
-    }
     res.send(user);
   } catch (error) {
     res.send(error.message);
