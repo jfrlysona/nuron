@@ -41,9 +41,17 @@
     border-color: #00a3ff !important;
     background-color: #00a3ff !important;
 }
-.css-1oj2twp-MuiPagination-root{
+
+.css-1oj2twp-MuiPagination-root {
     border-bottom: none !important;
 }
-.MuiPaginationItem-previousNext{
+
+.MuiPaginationItem-previousNext {
     padding: 0 30px !important;
+}
+
+@media screen and (max-width: 500px) {
+    .MuiPaginationItem-previousNext {
+        padding: 0 10px !important;
+    }
 }
