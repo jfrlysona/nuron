@@ -140,13 +140,27 @@ nav {
                     .fa-cart-shopping,
                     .fa-sun-bright,
                     .fa-moon,
-                    .fa-heart {
+                    .fa-heart ,.fa-bars{
                         display: block;
                         font-size: 17px;
                         color: var(--text-color);
                         user-select: none;
                     }
 
+
+                }
+
+                .menu {
+                    display: none;
+                    height: 40px;
+                    width: 40px;
+                    border: 1px solid var(--border-color);
+                    border-radius: 50%;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0 17px;
+                    overflow: hidden;
+                    transition: all 400ms;
 
                 }
 
@@ -204,5 +218,47 @@ nav {
     100% {
         margin-top: 0;
         opacity: 1;
+    }
+}
+
+@media screen and (max-width: 1220px) {
+    nav {
+        .navbar {
+            .start {
+                .pages {
+                    display: none;
+                }
+            }
+            .end{
+                .icons{
+                    .menu{
+                        display: flex;
+
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 750px) {
+    nav {
+        .navbar {
+            .start {
+                .pages {
+                    display: none;
+                }
+            }
+            .end{
+                .input{
+                    display: none;
+                }
+                .icons{
+                    .menu{
+                        display: flex;
+
+                    }
+                }
+            }
+        }
     }
 }

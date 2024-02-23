@@ -6,6 +6,7 @@ import "./index.scss";
 import { CartContext } from "../../context/CartProvider";
 import { SearchContext } from "../../context/SearchProvider";
 import SearchResult from "../../components/SearchResult";
+import MenuBar from "../../components/MenuBar";
 function Navbar() {
   const { handleTheme, theme } = useContext(ThemeContext);
   const { cart } = useContext(CartContext);
@@ -13,6 +14,7 @@ function Navbar() {
   const { decode, user, logout } = useContext(UserContext);
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [stickyNav, setStickyNav] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     window.addEventListener("scroll", stickNavbar);
@@ -51,6 +53,7 @@ function Navbar() {
             <NavLink to={"/about"}>About</NavLink>
             <NavLink to={"/shop"}>Shop</NavLink>
             <NavLink to={"/create-variants"}>Create</NavLink>
+            <NavLink to={"/collections"}>Collection</NavLink>
             <NavLink to={"/blog"}>Blog</NavLink>
             <NavLink to={"/contact"}>Contact</NavLink>
           </div>
@@ -106,8 +109,12 @@ function Navbar() {
                 <sup>{cart.length ? cart.length : ""}</sup>
               </i>
             </div>
+            <div className="icon menu" onClick={() => setOpenMenu(!openMenu)}>
+              <i className="fa-light fa-bars"></i>
+            </div>
           </div>
         </div>
+        {openMenu && <MenuBar close={()=>setOpenMenu(false)} />}
       </div>
     </nav>
   );
