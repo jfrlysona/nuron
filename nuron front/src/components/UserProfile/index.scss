@@ -153,3 +153,114 @@
         }
     }
 }
+
+@media screen and (max-width: 1408px) {
+    #UserProfile {
+
+        .container {
+            .proftext {
+                padding-top: 100px;
+
+                .bio {
+                    margin: 0 20px;
+                    width: 95%;
+                    display: flex;
+                    justify-content: center;
+                    gap: 2px;
+
+                    i {
+                        color: #00a3ff;
+                        padding: 20px 0 50px;
+                        font-size: 25px;
+                    }
+
+                    p {
+                        max-width: 700px;
+                        padding: 20px 10px 50px 0;
+                        text-align: center;
+                        color: var(--text-color);
+                        line-height: 28px;
+                    }
+                }
+            }
+
+            .tabs {
+                margin: 0 20px;
+            }
+
+            .tab-content {
+                .cards {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                .cards-col {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 440px) {
+    #UserProfile {
+        .UserProfileHeading {
+            .content {
+                left: 37%;
+
+                img {
+                    width: 130px;
+                    height: 130px;
+                }
+            }
+        }
+
+        .container {
+            .proftext {
+                padding-top: 100px;
+
+                .bio {
+                    margin: 0 20px;
+                    width: 95%;
+                    display: flex;
+                    justify-content: center;
+                    gap: 2px;
+
+                    i {
+                        color: #00a3ff;
+                        padding: 20px 0 50px;
+                        font-size: 25px;
+                    }
+
+                    p {
+                        max-width: 700px;
+                        padding: 20px 10px 50px 0;
+                        text-align: center;
+                        color: var(--text-color);
+                        line-height: 28px;
+                    }
+                }
+            }
+
+            .tabs {
+                margin: 0 20px;
+            }
+
+            .tab-content {
+                .cards {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                .cards-col {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

@@ -66,3 +66,76 @@
         }
     }
 }
+@media screen and (max-width:800px) {
+    #callToAction {
+        text-align: center;
+        padding: 80px 20px;
+        background-image: url("https://rainbowthemes.net/themes/nuron/wp-content/themes/nuron/assets/images/bg/bg-image-6.jpg");
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+    
+        &::before {
+            background-color: #000;
+            opacity: .7;
+            position: absolute;
+            content: "";
+            top: 0;
+            box-sizing: border-box;
+            left: 0;
+            z-index: -2;
+            height: 100%;
+            width: 100%;
+        }
+    
+        h1 {
+            font-size: 35px;
+            line-height: 40px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: white;
+        }
+    
+        p {
+            font-size: 20px;
+            line-height: 32px;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+    
+        .btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            button {
+                min-width: 140px;
+                min-height: 44px;
+                border-radius: 10px;
+                transition: .3s;
+                font-size: 16px;
+                letter-spacing: 0.5px;
+                border: none;
+                color: white;
+            }
+    
+            .btn-create {
+                background-color: #00a3ff;
+    
+                &:hover {
+                    background-color: #212e48;
+                }
+            }
+    
+            .btn-contact {
+                background-color: #212e48;
+    
+                &:hover {
+                    background-color: #00a3ff;
+                }
+            }
+        }
+    }
+}

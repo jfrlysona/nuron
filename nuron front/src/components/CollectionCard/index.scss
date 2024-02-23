@@ -86,3 +86,22 @@
         }
     }
 }
+
+@media screen and (max-width: 1160px) {
+    #collectionCard {
+        padding: 18px;
+        border-radius: 5px;
+        background-color: var(--bg-color-element);
+        width: 265px;
+        height: 277px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        .text{
+            a{
+                font-size: 18px;
+                line-height: 23px;
+            }
+        }
+    }    
+}

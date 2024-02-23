@@ -37,3 +37,16 @@
         }
     }
 }
+
+@media screen and (max-width:575px) {
+    #statistics {
+        padding: 40px 20px 100px;
+
+        .container {
+            .cards-statistics {
+                grid-template-columns: repeat(1, 1fr);
+
+            }
+        }
+    }
+}

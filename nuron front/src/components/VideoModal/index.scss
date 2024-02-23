@@ -7,6 +7,7 @@
     padding: 70px 0;
     background-color: rgba(0, 0, 0, 0.759);
     z-index: 11;
+
     .container {
         position: relative;
 
@@ -19,6 +20,7 @@
             transition: all 300ms;
             cursor: pointer;
             user-select: none;
+
             &:hover {
                 color: #00a3ff;
             }
@@ -34,6 +36,90 @@
         }
     }
 }
-// @media screen and (min-width:320px) {
-    
-// }
+
+@media screen and (max-width:900px) {
+    .videoModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 70px 0;
+        background-color: rgba(0, 0, 0, 0.759);
+        z-index: 11;
+        display: flex;
+        align-items: center;
+
+        .container {
+            position: relative;
+
+            width: 90%;
+
+            i {
+                position: absolute;
+                right: -20px;
+                top: -40px;
+                font-size: 28px;
+                color: var(--text-heading);
+                transition: all 300ms;
+                cursor: pointer;
+                user-select: none;
+
+                &:hover {
+                    color: #00a3ff;
+                }
+            }
+
+            iframe {
+                display: block;
+                height: 500px;
+                width: 100%;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:500px) {
+    .videoModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 70px 0;
+        background-color: rgba(0, 0, 0, 0.759);
+        z-index: 11;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .container {
+            position: relative;
+
+
+            i {
+                position: absolute;
+                right: -20px;
+                top: -40px;
+                font-size: 28px;
+                color: var(--text-heading);
+                transition: all 300ms;
+                cursor: pointer;
+                user-select: none;
+
+                &:hover {
+                    color: #00a3ff;
+                }
+            }
+
+            iframe {
+                display: block;
+                max-width: 700px;
+                height: 320px;
+                width: 100%;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            }
+        }
+    }
+}

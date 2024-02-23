@@ -1,13 +1,95 @@
-#shop{
+#shop {
     padding: 100px 0;
-    .container{
+
+    .container {
         max-width: 1408px;
         margin: 0 auto;
-        .cards{
+
+        .cards {
             display: grid;
-            grid-template-columns: repeat(5,1fr);
+            grid-template-columns: repeat(5, 1fr);
             column-gap: 30px;
             row-gap: 30px;
+        }
+    }
+}
+
+@media screen and (min-width: 1160px) and (max-width: 1408px) {
+    #shop {
+        padding: 100px 20px;
+
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                margin: 0 auto;
+                width: max-content;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1160px) {
+    #shop {
+        padding: 100px 20px;
+
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                width: max-content;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 575px) and (max-width: 850px) {
+    #shop {
+        padding: 100px 20px;
+
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                margin: 0 auto;
+                width: max-content;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    #shop {
+        padding: 100px 20px;
+
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                margin: 0 auto;
+                width: max-content;
+            }
         }
     }
 }

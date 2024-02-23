@@ -32,3 +32,41 @@
         }
     }
 }
+@media screen and (max-width: 1408px) {
+    #topCollection{
+        padding: 100px 0 0;
+        .container{
+            max-width: 1408px;
+            margin: 0 auto;
+            .title{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px 50px;
+
+                h1 {
+                    font-size: 27px;
+                    line-height: 32px;
+                    color: var(--heading-color);
+                }
+                a{
+                    font-size: 14px;
+                    line-height: 21px;
+                    color: var( --text-color);
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;
+                    transition: all 300ms;
+                    &:hover{
+                        color: #00a3ff;
+                    }
+                }
+            }
+            .cards{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                justify-content: center;
+            }
+        }
+    }
+}

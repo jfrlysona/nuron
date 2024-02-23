@@ -140,3 +140,125 @@
         }
     }
 }
+
+@media screen and (min-width: 1100px) and (max-width: 1408px) {
+    #adminUsers {
+        padding: 100px 20px;
+
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+
+            h1 {
+                font-size: 30px;
+                line-height: 35px;
+                padding-bottom: 50px;
+                color: var(--heading-color);
+                text-align: center;
+            }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                margin: 0 auto;
+                width: max-content;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 720px) and (max-width: 1100px) {
+    #adminUsers {
+        padding: 100px 20px;
+
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+
+            h1 {
+                font-size: 30px;
+                line-height: 35px;
+                padding-bottom: 50px;
+                color: var(--heading-color);
+                text-align: center;
+            }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                margin: 0 auto;
+                width: max-content;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 720px) {
+    #adminUsers {
+        padding: 100px 20px;
+
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+
+            h1 {
+                font-size: 28px;
+                line-height: 32px;
+                padding-bottom: 40px;
+                color: var(--heading-color);
+                text-align: center;
+            }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                margin: 0 auto;
+                width: max-content;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #adminUsers {
+        padding: 100px 20px;
+
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+
+            h1 {
+                font-size: 28px;
+                line-height: 32px;
+                padding-bottom: 40px;
+                color: var(--heading-color);
+                text-align: center;
+            }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                margin: 0 auto;
+                width: max-content;
+
+                .card {
+                    padding: 18px;
+                    border-radius: 5px;
+                    background-color: var(--bg-color-element);
+                    width: 270px;
+                    height: 297px;
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+}

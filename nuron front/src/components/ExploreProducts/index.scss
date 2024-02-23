@@ -1,34 +1,84 @@
-#ExploreProducts{
+#ExploreProducts {
     padding: 100px 0 0;
-    .container{
+
+    .container {
         max-width: 1408px;
         margin: 0 auto;
-        .title{
+
+        .title {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-bottom: 50px;
-            h1{
+
+            h1 {
                 font-size: 30px;
                 line-height: 35px;
-                color: var( --heading-color);
+                color: var(--heading-color);
             }
-            a{
+
+            a {
                 font-size: 14px;
                 line-height: 21px;
-                color: var( --text-color);
+                color: var(--text-color);
                 letter-spacing: 0.5px;
                 text-transform: uppercase;
                 transition: all 300ms;
-                &:hover{
+
+                &:hover {
                     color: #00a3ff;
                 }
             }
         }
-        .cards{
+
+        .cards {
             display: grid;
-            grid-template-columns: repeat(5,1fr);
+            grid-template-columns: repeat(5, 1fr);
             column-gap: 30px;
+        }
+    }
+}
+
+@media screen and (max-width: 1408px) {
+    #ExploreProducts {
+        padding: 100px 0 0;
+
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+
+            .title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px 50px;
+
+                h1 {
+                    font-size: 27px;
+                    line-height: 32px;
+                    color: var(--heading-color);
+                }
+
+                a {
+                    font-size: 14px;
+                    line-height: 21px;
+                    color: var(--text-color);
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;
+                    transition: all 300ms;
+
+                    &:hover {
+                        color: #00a3ff;
+                    }
+                }
+            }
+
+            .cards {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                justify-content: center;
+            }
         }
     }
 }
