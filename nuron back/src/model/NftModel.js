@@ -12,5 +12,12 @@ const nftSchema = new Schema({
   endingOn: Date,
   image: String,
   likes: [{ type: Schema.Types.ObjectId, ref: "users" }],
+  bids: [
+    {
+      bidPrice: Number,
+      bidBy: { type: Schema.Types.ObjectId, ref: "users" },
+      created: { type: Date, default: Date.now },
+    },
+  ],
 });
 export const NftModel = mongoose.model("nfts", nftSchema);

@@ -74,6 +74,8 @@ export const updateNft = async (req, res) => {
     endingOn,
     image,
     likes,
+    bidPrice,
+    bidBy,
   } = req.body;
   const update = {
     name,
@@ -88,6 +90,12 @@ export const updateNft = async (req, res) => {
     likes,
   };
 
+  if (bidPrice && bidBy) {
+    update.$push = {
+      bids: { bidPrice, bidBy, created: Date.now() },
+    };
+  }
+  
   const user = await UserModel.findById(decoded.userId);
   if (!user) {
     return res.status(404).send("User not found");
