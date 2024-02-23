@@ -13,3 +13,54 @@
         }
     }
 }
+@media screen and (max-width:1400px) {
+    #blog {
+        padding: 100px 30px;
+    
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+    
+            .blogs {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+        }
+    }
+}
+@media screen and (max-width:870px) {
+    #blog {
+        padding: 100px 30px;
+    
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+    
+            .blogs {
+                display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 30px;
+            row-gap: 30px;
+            }
+        }
+    }
+}
+@media screen and (max-width:610px) {
+    #blog {
+        padding: 100px 30px;
+    
+        .container {
+            max-width: 1408px;
+            margin: 0 auto;
+    
+            .blogs {
+                display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            column-gap: 30px;
+            row-gap: 30px;
+            }
+        }
+    }
+}

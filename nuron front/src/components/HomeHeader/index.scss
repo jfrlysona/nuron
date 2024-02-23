@@ -5,7 +5,7 @@
         max-width: 1408px;
         display: flex;
         margin: 0 auto;
-        padding: 100px 0;
+        padding: 100px 0 150px;
         align-items: center;
         gap: 50px;
 
@@ -151,14 +151,101 @@
     }
 }
 
-// @media screen and (min-width:320px) and (max-width:990px) {
-//     #homeHeader {
-//         .container {
-//             justify-content: center;
+@media screen and (min-width:320px) and (max-width:990px) {
+    #homeHeader {
+        .container {
+            justify-content: center;
+            padding: 100px 20px;
+            flex-wrap: wrap-reverse;
+            gap: 100px;
 
+            .text {
+                padding-top: 100px;
 
-//             flex-wrap: wrap-reverse;
-//             gap: 100px;
-//         }
-//     }
-// }
+                h1 {
+                    font-size: 40px;
+                    line-height: 60px;
+                }
+
+                .btns {
+                    button {
+                        min-width: 160px;
+                        min-height: 54px;
+                        border-radius: 10px;
+                        transition: .3s;
+                        font-size: 16px;
+                        letter-spacing: 0.5px;
+                        border: none;
+                        color: white;
+
+                    }
+
+                    .btn-start {
+                        background-color: #00a3ff;
+                        margin-right: 15px;
+                        margin-bottom: 15px;
+
+                        &:hover {
+                            background-color: #212e48;
+                        }
+                    }
+
+                    .btn-create {
+                        background-color: #212e48;
+
+                        &:hover {
+                            background-color: #00a3ff;
+                        }
+                    }
+                }
+            }
+
+            .content {
+                .jumping-text {
+                    position: absolute;
+                    bottom: -160px;
+                    left: 0px;
+                    padding: 20px;
+                    border-radius: 10px;
+                    max-width: 300px;
+                    height: max-content;
+                    background: 0 0;
+                    border: 1px solid var(--border-color);
+                    backdrop-filter: blur(12px);
+                    --webkit-backdrop-filter: blur(12px);
+                    background-color: var(--blured-bg);
+                    animation: jump 5s infinite;
+
+                    .users {
+                        display: flex;
+                        align-items: center;
+
+                        .users-photo {
+                            img {
+                                width: 35px;
+                                height: 35px;
+                                border-radius: 50%;
+                                border: 2px solid var(--border-color);
+                                transition: all 300ms;
+                            }
+                        }
+
+                        span {
+                            color: var(--text-heading);
+                            font-size: 14px;
+                            line-height: 1.5;
+                            font-weight: 500;
+                        }
+
+                    }
+
+                    p {
+                        line-height: 1.6;
+                        font-size: 16px;
+                        color: var(--text-color);
+                    }
+                }
+            }
+        }
+    }
+}

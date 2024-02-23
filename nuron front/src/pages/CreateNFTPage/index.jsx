@@ -16,9 +16,9 @@ function CreateNFTPage() {
       </Helmet>
       <Header
         title="Create NFT"
-        prevLink="/"
+        prevLink="/create-variants"
         currentLink="/create-nft"
-        prevPage="Home"
+        prevPage="Create Variants"
         currentPage="Create NFT"
       />
       <CreateNFT />

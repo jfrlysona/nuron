@@ -30,17 +30,17 @@ function RelatedItems({ relatedItems, collection }) {
           clickable: true,
         }}
         breakpoints={{
-          640: {
+          690: {
             slidesPerView: 1,
             spaceBetween: 70,
           },
-          768: {
+          740: {
             slidesPerView: 3,
             spaceBetween: 40,
           },
           1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
+            slidesPerView: 4,
+            spaceBetween: 30,
           },
         }}
         modules={[Pagination]}
