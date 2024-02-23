@@ -353,6 +353,48 @@
                             text-transform: capitalize;
                         }
                     }
+                    .created {
+                        span {
+                            font-size: 14px;
+                            line-height: 18px;
+                            color: #00a3ff;
+                            padding-bottom: 8px;
+                            display: block;
+                        }
+
+                        p {
+                            color: var(--text-color);
+                            font-size: 16px;
+                            line-height: 28px;
+                            border: 1px solid #ffffff14;
+                            background-color: var(--bg-color-element);
+                            width: max-content;
+                            border-radius: 5px;
+                            padding: 5px 10px;
+                            text-transform: capitalize;
+                        }
+                    }
+                    .ending {
+                        span {
+                            font-size: 14px;
+                            line-height: 18px;
+                            color: #00a3ff;
+                            padding-bottom: 8px;
+                            display: block;
+                        }
+
+                        p {
+                            color: var(--text-color);
+                            font-size: 16px;
+                            line-height: 28px;
+                            border: 1px solid #ffffff14;
+                            background-color: var(--bg-color-element);
+                            width: max-content;
+                            border-radius: 5px;
+                            padding: 5px 10px;
+                            text-transform: capitalize;
+                        }
+                    }
 
                     .tab-card {
                         display: flex;

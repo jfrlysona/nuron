@@ -226,7 +226,6 @@ function NftDetails() {
                 <Link to="/cart">Buy Now ${highestBid}</Link>
               </div>
             </div>
-            <div className="time"></div>
             <div className="tabs">
               <button
                 style={
@@ -314,6 +313,26 @@ function NftDetails() {
                 <div className="category">
                   <span>Category</span>
                   <p>{nft.category}</p>
+                </div>
+                <div className="created">
+                  <span>Created </span>
+                  <p>
+                    {new Date(nft.createdAt).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
+                <div className="ending">
+                  <span>Expires On </span>
+                  <p>
+                    {new Date(nft.endingOn).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
                 </div>
               </div>
             )}
