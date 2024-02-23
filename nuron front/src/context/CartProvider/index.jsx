@@ -3,37 +3,35 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 export const CartContext = createContext();
 function CartProvider({ children }) {
   const [cart, setCart] = useLocalStorage("cart", []);
-  const total = cart.reduce(
-    (prev, next) => prev + next.count * next.unitPrice,
-    0
-  );
   function addCart(item) {
-    const index = cart.findIndex((x) => x.id === item._id);
+    const index = cart.findIndex((x) => x._id === item._id);
     if (index === -1) {
       setCart([...cart, { ...item, count: 1 }]);
       return;
-    } else {
-      removeItem(item);
     }
+    cart[index].count++;
+    setCart([...cart]);
   }
   function increaseCount(item) {
-    const index = cart.findIndex((x) => x.id === item._id);
+    const index = cart.findIndex((x) => x._id === item._id);
     cart[index].count++;
     setCart([...cart]);
   }
   function decreaseCount(item) {
-    const index = cart.findIndex((x) => x.id === item._id);
-    if (cart[index].count === 1) {
-      return;
+    const index = cart.findIndex((x) => x._id === item._id);
+    if (cart[index].count === 0) {
+      removeItem(item);
+      return prevCart.filter((x) => x._id !== item._id);
     }
     cart[index].count--;
     setCart([...cart]);
   }
   function removeItem(item) {
-    setCart(cart.filter((x) => x.id !== item._id));
+    console.log(item);
+    setCart(cart.filter((x) => x._id !== item._id));
   }
   function isCart(item) {
-    return cart.findIndex((x) => x.id === item._id) === -1 ? false : true;
+    return cart.findIndex((x) => x._id === item._id) === -1 ? false : true;
   }
   const data = {
     cart,
@@ -41,6 +39,7 @@ function CartProvider({ children }) {
     increaseCount,
     decreaseCount,
     removeItem,
+    isCart,
   };
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 }

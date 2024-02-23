@@ -14,7 +14,7 @@ function TopCollection() {
       <div className="container">
         <div className="title">
           <h1>Top Collection</h1>
-          <Link to="collections">view all <i className="fa-light fa-arrow-right"></i></Link>
+          <Link to="/collections">view all <i className="fa-light fa-arrow-right"></i></Link>
         </div>
         <div className="cards">
           {collection.map((x) => (

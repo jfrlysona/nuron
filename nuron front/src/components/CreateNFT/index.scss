@@ -149,7 +149,7 @@
                 }
             }
 
-    
+
             .form {
                 position: relative;
 
@@ -158,13 +158,14 @@
                     color: var(--text-color);
                     line-height: 2;
                 }
+
                 .tags-form {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
                     align-items: center;
                     column-gap: 15px;
                 }
-    
+
                 input {
                     height: 50px;
                     width: 100%;
@@ -177,6 +178,11 @@
                     -webkit-transition: 0.3s;
                     transition: 0.3s;
                     outline: 0;
+
+                    &::placeholder {
+                        color: var(--text-color);
+                        font-size: 15px;
+                    }
 
                     &:focus {
                         border: 2px solid #00a3ff;

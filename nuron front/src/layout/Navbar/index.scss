@@ -139,13 +139,38 @@ nav {
 
                     .fa-cart-shopping,
                     .fa-sun-bright,
-                    .fa-moon,.fa-heart {
+                    .fa-moon,
+                    .fa-heart {
                         display: block;
                         font-size: 17px;
                         color: var(--text-color);
                         user-select: none;
                     }
 
+
+                }
+
+                .cart-i {
+                    overflow: visible;
+
+                    i {
+                        position: relative;
+
+                        sup {
+                            display: block;
+                            background-color: #00a3ff;
+                            line-height: 18px;
+                            font-size: 10px;
+                            width: 18px;
+                            border-radius: 50%;
+                            color: #fff;
+                            display: grid;
+                            place-content: center;
+                            position: absolute;
+                            top: -16px;
+                            right: -9px;
+                        }
+                    }
                 }
             }
         }
@@ -164,16 +189,18 @@ nav {
     animation: headerSlideDown .5s ease forwards;
     z-index: 10;
 }
+
 @keyframes headerSlideDown {
     0% {
         margin-top: -100px;
         opacity: 0;
     }
-    
+
     30% {
         margin-top: -50px;
         opacity: 0;
     }
+
     100% {
         margin-top: 0;
         opacity: 1;

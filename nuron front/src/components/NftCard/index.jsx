@@ -4,6 +4,7 @@ import "./index.scss";
 import { UserContext } from "../../context/UserProvider";
 import { WishlistContext } from "../../context/WIshlistProvider";
 import { LikeContext } from "../../context/LikeProvider";
+import { CartContext } from "../../context/CartProvider";
 function NftCard({
   img,
   name,
@@ -11,12 +12,12 @@ function NftCard({
   likes,
   id,
   collection,
-  created,
-  endingOn,
   collectionId,
+  item,
 }) {
   const navigate = useNavigate();
   const { decode } = useContext(UserContext);
+  const { addCart } = useContext(CartContext);
   const { wishlist, addWishlist, removeItemWishlist } =
     useContext(WishlistContext);
   const { likeNft, checkIfUserLikedNft } = useContext(LikeContext);
@@ -26,24 +27,33 @@ function NftCard({
       <div id="nft-card">
         <div className="hover-btns">
           <div className="icon">
-            {wishlist.includes(id) ? (
-              <i
-                className="fa-solid fa-heart"
-                style={{ color: "#00a3ff" }}
-                onClick={() => removeItemWishlist(id)}
-              ></i>
+            {decode ? (
+              wishlist.includes(id) ? (
+                <i
+                  className="fa-solid fa-heart"
+                  style={{ color: "#00a3ff" }}
+                  onClick={() => removeItemWishlist(id)}
+                ></i>
+              ) : (
+                <i
+                  className="fa-light fa-heart"
+                  onClick={() => addWishlist(id)}
+                ></i>
+              )
             ) : (
-              <i
-                className="fa-light fa-heart"
-                onClick={() => addWishlist(id)}
-              ></i>
+              <Link to="/login">
+                <i className="fa-light fa-heart"></i>
+              </Link>
             )}
           </div>
           <div className="icon">
-            <i className="fa-light fa-cart-shopping"></i>
+            <i
+              className="fa-light fa-cart-shopping"
+              onClick={() => addCart(item)}
+            ></i>
           </div>
         </div>
-        <div className="image" onClick={()=>navigate("/nft/"+id)}>
+        <div className="image" onClick={() => navigate("/nft/" + id)}>
           <img src={img} alt="nft image" />
         </div>
         <div className="content">

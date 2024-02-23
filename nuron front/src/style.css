@@ -22,6 +22,7 @@
   --nav-bg: #1515218c;
   --btn-selected-color: #212e48;
   --btn-selected-color2: #212e48;
+  --btn-selected-color3: #fff;
   --upload-color: #acacac;
   --card-hover-color:#13131d;
   --banner-color:rgb(142, 142, 142);
@@ -50,6 +51,7 @@
   --nav-bg: #f5f8fa;
   --btn-selected-color: #00a3ff;
   --btn-selected-color2: #f5f8fa;
+  --btn-selected-color3: #00a3ff;
   --upload-color: #00a3ff;
   --card-hover-color:#fff;
   --banner-color:rgba(255,255,255,1);

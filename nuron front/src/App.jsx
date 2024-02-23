@@ -29,6 +29,7 @@ import AdminPanelPage from "./pages/AdminPanelPage";
 import AdminUsersPage from "./pages/AdminUsersPage";
 import AdminCollectionsPage from "./pages/AdminCollectionsPage";
 import AdminNftsPage from "./pages/AdminNftsPage";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/blog" element={<BlogPage />} />
+              <Route path="/cart" element={<CartPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/sign-up" element={<RegisterPage />} />

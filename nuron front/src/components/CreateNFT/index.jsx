@@ -165,12 +165,20 @@ function CreateNFT() {
             </div>
             <div className="form">
               <label htmlFor="category">Category</label>
-              <Field name="category" type="text" />
+              <Field
+                name="category"
+                type="text"
+                placeholder="Write one category"
+              />
               <ErrorMessage name="category" component={"span"} />
             </div>
             <div className="form">
               <label htmlFor="tags">Tags</label>
-              <Field name="tags" type="text" />
+              <Field
+                name="tags"
+                type="text"
+                placeholder="Write tags separated by commas"
+              />
               <ErrorMessage name="tags" component={"span"} />
             </div>
             <div className="form">

@@ -10,6 +10,7 @@ import "./odemeter.css";
 import "./style.css";
 import CartProvider from "./context/CartProvider/index.jsx";
 import LikeProvider from "./context/LikeProvider/index.jsx";
+import { SearchProvider } from "./context/SearchProvider/index.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <WishlistProvider>
             <CartProvider>
               <LikeProvider>
-                <App />
+                <SearchProvider>
+                  <App />
+                </SearchProvider>
               </LikeProvider>
             </CartProvider>
           </WishlistProvider>

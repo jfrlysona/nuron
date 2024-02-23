@@ -1,0 +1,17 @@
+#related{
+    max-width: 1468px;
+    margin: 0 auto;
+    padding: 70px 0 0;
+    h1 {
+        font-size: 30px;
+        line-height: 35px;
+        padding-bottom: 50px;
+        color: var(--heading-color);
+        max-width: 1408px;
+        margin: 0 auto;
+    }
+    .swiper{
+        padding:0px 30px 50px;
+        cursor: pointer;
+    }
+}

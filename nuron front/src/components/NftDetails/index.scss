@@ -1,0 +1,431 @@
+#nftDetails {
+    padding: 100px 0;
+
+    .container {
+        max-width: 1286px;
+        margin: 0 auto;
+
+        .details {
+            display: flex;
+            gap: 50px;
+            margin: 0 auto;
+
+            .image {
+                width: 100%;
+                height: 586px;
+                padding: 15px;
+                border-radius: 7px;
+                background-color: var(--bg-color-element);
+                overflow: hidden;
+                max-width: 586px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 7px;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+            .content {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .title {
+                    display: flex;
+                    justify-content: space-between;
+
+                    h1 {
+                        font-size: 30px;
+                        line-height: 38px;
+                        color: var(--heading-color);
+                        letter-spacing: 0.5px;
+                    }
+
+                    .icons {
+                        display: flex;
+                        gap: 10px;
+
+                        .icon {
+                            border-radius: 6px;
+                            background-color: var(--btn-selected-color2);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 5px;
+                            width: 60px;
+                            transition: all 400ms;
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: #00a3ff;
+                            }
+
+                            &:hover i {
+                                color: white !important;
+                            }
+
+                            &:hover span {
+                                color: white;
+                            }
+
+
+                            i {
+                                color: var(--text-color);
+                                font-size: 18px;
+                                user-select: none;
+                            }
+
+                            span {
+                                color: var(--text-color);
+                                font-size: 14px;
+                                line-height: 21px;
+                            }
+                        }
+                    }
+                }
+
+                .price {
+                    p {
+                        font-size: 14px;
+                        color: var(--text-color);
+                        line-height: 21px;
+
+                        span {
+                            color: #00a3ff;
+                        }
+                    }
+                }
+
+                .made {
+                    display: flex;
+                    gap: 50px;
+
+                    .info {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+
+                        span {
+                            color: var(--btn-selected-color3);
+                            font-size: 14px;
+                            letter-spacing: 0.5px;
+                        }
+
+                        .author {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+
+                            img {
+                                border-radius: 50%;
+                                width: 50px;
+                                height: 50px;
+                                border: 3px solid #ffffff14;
+                                object-fit: cover;
+                                object-position: center;
+                            }
+
+                            a {
+                                font-size: 20px;
+                                line-height: 25px;
+                                display: inline-block;
+                                text-transform: capitalize;
+                                color: var(--heading-color);
+                                transition: all 300ms;
+                                letter-spacing: 0.5px;
+
+                                &:hover {
+                                    color: #00a3ff;
+                                }
+                            }
+                        }
+
+                        .collection {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+
+                            img {
+                                border-radius: 50%;
+                                width: 50px;
+                                height: 50px;
+                                border: 3px solid #ffffff14;
+                                object-fit: cover;
+                                object-position: center;
+                            }
+
+                            a {
+                                font-size: 20px;
+                                line-height: 25px;
+                                display: inline-block;
+                                text-transform: capitalize;
+                                color: var(--heading-color);
+                                transition: all 300ms;
+                                letter-spacing: 0.5px;
+
+                                &:hover {
+                                    color: #00a3ff;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .pay {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-top: 15px;
+
+                    .place-bid {
+                        display: flex;
+                        gap: 15px;
+
+                        input {
+                            height: 50px;
+                            width: 150px;
+                            padding: 4px 10px;
+                            border-radius: 5px;
+                            font-size: 18px;
+                            background: var(--bg-color-element2);
+                            color: var(--text-heading);
+                            border: 2px solid var(--border-color);
+                            -webkit-transition: 0.3s;
+                            transition: 0.3s;
+                            outline: 0;
+
+                            &:focus {
+                                border: 2px solid #00a3ff;
+                            }
+                        }
+
+                        button {
+                            padding: 10px 16px;
+                            height: 50px;
+                            border-radius: 5px;
+                            transition: .3s;
+                            font-size: 16px;
+                            letter-spacing: 0.5px;
+                            border: none;
+                            color: var(--btn-selected-color3);
+                            background-color: var(--btn-selected-color2);
+                            width: max-content;
+
+                            &:hover {
+                                background-color: #00a3ff;
+                                color: white;
+                            }
+                        }
+                    }
+
+                    .buy-now {
+                        padding: 10px 16px;
+                        height: 50px;
+                        border-radius: 5px;
+                        transition: .3s;
+                        border: none;
+                        background-color: var(--btn-selected-color2);
+                        width: max-content;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:hover {
+                            background-color: #00a3ff;
+                        }
+
+                        &:hover a {
+                            color: white;
+                        }
+
+
+                        a {
+                            color: var(--btn-selected-color3);
+                            font-size: 16px;
+                            transition: .3s;
+                            letter-spacing: 0.5px;
+                        }
+                    }
+                }
+
+                .tabs {
+                    display: flex;
+                    gap: 12px;
+                    padding: 7px;
+                    border: 1px solid #ffffff14;
+                    background-color: var(--bg-color-element);
+                    border-radius: 5px;
+                    height: max-content;
+
+                    button {
+                        border: 1px dashed #ffffff14;
+                        background-color: var(--bg-color-element6);
+                        width: 130px;
+                        font-size: 14px;
+                        color: var(--text-color);
+                        height: 50px;
+                        border-radius: 6px;
+                        text-align: center;
+                        user-select: none;
+                        transition: all 300ms;
+
+                        &:hover {
+                            border: 1px dashed transparent;
+                            background-color: var(--btn-selected-color);
+                            color: white;
+                        }
+                    }
+                }
+
+                .tab-content {
+                    padding: 20px 5px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    .description {
+                        span {
+                            font-size: 14px;
+                            line-height: 18px;
+                            color: #00a3ff;
+                        }
+
+                        p {
+                            color: var(--text-color);
+                            font-size: 16px;
+                            line-height: 28px;
+                        }
+                    }
+
+                    .tags {
+                        span {
+                            font-size: 14px;
+                            line-height: 18px;
+                            color: #00a3ff;
+                            padding-bottom: 8px;
+                            display: block;
+                        }
+
+                        p {
+                            display: flex;
+                            gap: 10px;
+                            flex-wrap: wrap;
+
+                            span {
+                                color: var(--text-color);
+                                font-size: 16px;
+                                line-height: 28px;
+                                border: 1px solid #ffffff14;
+                                background-color: var(--bg-color-element);
+                                width: max-content;
+                                border-radius: 5px;
+                                padding: 5px 10px;
+                                text-transform: capitalize;
+                                display: inline-block;
+                            }
+                        }
+                    }
+
+                    .category {
+                        span {
+                            font-size: 14px;
+                            line-height: 18px;
+                            color: #00a3ff;
+                            padding-bottom: 8px;
+                            display: block;
+                        }
+
+                        p {
+                            color: var(--text-color);
+                            font-size: 16px;
+                            line-height: 28px;
+                            border: 1px solid #ffffff14;
+                            background-color: var(--bg-color-element);
+                            width: max-content;
+                            border-radius: 5px;
+                            padding: 5px 10px;
+                            text-transform: capitalize;
+                        }
+                    }
+
+                    .tab-card {
+                        display: flex;
+                        height: 90px;
+                        border-bottom: 1px solid #ffffff14;
+                        align-items: center;
+                        padding-bottom: 20px;
+                        gap: 10px;
+
+                        img {
+                            border-radius: 50%;
+                            width: 50px;
+                            height: 50px;
+                            border: 3px solid #ffffff14;
+                            object-fit: cover;
+                            object-position: center;
+                        }
+
+                        .text {
+                            display: flex;
+                            flex-direction: column;
+
+                            p {
+                                color: var(--text-color);
+                                font-size: 14px;
+                                line-height: 21px;
+
+                                span {
+                                    color: #00a3ff;
+                                }
+
+                                a {
+                                    color: var(--heading-color);
+                                    transition: all 300ms;
+                                    display: inline-block;
+                                    text-transform: capitalize;
+
+                                    &:hover {
+                                        color: #00a3ff;
+                                    }
+                                }
+                            }
+
+                            span {
+                                color: var(--text-color);
+                                font-size: 14px;
+                                line-height: 21px;
+                            }
+                        }
+                    }
+                }
+
+                .bid-tab {
+                    overflow-y: scroll;
+                    max-height: 450px;
+                    height: 100%;
+                    cursor: pointer;
+
+                    &::-webkit-scrollbar {
+                        width: 7px;
+                        background-color: transparent;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background-color: var(--scrollbar-color);
+                        border-radius: 10px;
+
+                        &:hover {
+                            background-color: #00A3FF;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
